@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Hostel Management - Login</title>
+    <meta name="keywords" content="HTML5, Bootstrap 3, Admin Template, UI Theme"/>
+    <meta name="description" content="Alliance - A Responsive HTML5 Admin UI Framework">
+    <meta name="author" content="ThemeREX">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700'>
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,700,700italic' rel='stylesheet'
+          type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" type="text/css" href="http://alliance-html.themerex.net/assets/skin/default_skin/css/theme.css">
+
+    <link rel="stylesheet" type="text/css" href="http://alliance-html.themerex.net/assets/allcp/forms/css/forms.css">
+
+    <link rel="shortcut icon" href="http://alliance-html.themerex.net/assets/img/favicon.ico">
+
+</head>
+<body class="utility-page sb-l-c sb-r-c">
+    <div id="main" class="animated fadeIn">
+        <section id="content_wrapper">
+            <div id="canvas-wrapper">
+                <canvas id="demo-canvas"></canvas>
+            </div>
+
+            <!-- content -->
+
+            <section id="content">
+                <!-- Login Form -->
+                <div class="allcp-form theme-primary mw320" id="login">
+                    <div class="text-center"><img src="http://home.iitj.ac.in/~ug201313037/login_img.png" class="img-responsive"
+                        alt="Logo"/>
+                    </div>
+                    <div class="panel mw320">
+                        <form id="login_form" method="POST" action="/hostel/login/">
+                            {% csrf_token %}
+                            <div class="panel-body pn mv10">
+                                <div class="section">
+                                    <label for="username" class="field prepend-icon">
+                                        <input type="text" name="username" class="gui-input"
+                                        placeholder="Username">
+                                        <label for="username" class="field-icon">
+                                            <i class="fa fa-user"></i>
+                                        </label>
+                                    </label>
+                                </div>
+                                <div class="section">
+                                        <label for="password" class="field prepend-icon">
+                                            <input type="password" name="password" class="gui-input"
+                                                   placeholder="Password">
+                                            <label for="password" class="field-icon">
+                                                <i class="fa fa-lock"></i>
+                                            </label>
+                                        </label>
+                                        {% if messages %}
+                                            <ul class="messages">
+                                                {% for message in messages %}
+                                                <font color="red"><li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li></font>
+                                                {% endfor %}
+                                            </ul>
+                                        {% endif %}
+                                </div>
+                                <div class="section text-center">
+                                        <div class="bs-component">
+                                        </div>
+                                        <button type="submit" class="btn btn-bordered btn-primary pull-center">Log in</button>
+                                    </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </div>
+{#<script src="http://alliance-html.themerex.net/assets/js/jquery/jquery-1.11.3.min.js"></script>#}
+{#<script src="http://alliance-html.themerex.net/assets/js/jquery/jquery_ui/jquery-ui.min.js"></script>#}
+
+<!-- -------------- CanvasBG JS -------------- -->
+<script src="http://alliance-html.themerex.net/assets/js/plugins/canvasbg/canvasbg.js"></script>
+
+<!-- -------------- Theme Scripts -------------- -->
+<script src="http://alliance-html.themerex.net/assets/js/utility/utility.js"></script>
+<script src="http://alliance-html.themerex.net/assets/js/demo/demo.js"></script>
+<script src="http://alliance-html.themerex.net/assets/js/main.js"></script>
+
+<!-- -------------- Page JS -------------- -->
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+
+        "use strict";
+
+        // Init Theme Core
+        Core.init();
+
+        // Init Demo JS
+        Demo.init();
+
+        // Init CanvasBG
+        CanvasBG.init({
+            Loc: {
+                x: window.innerWidth / 5,
+                y: window.innerHeight / 10
+            }
+        });
+
+    });
+</script>
+
+
+</body>
+</html>

@@ -6,6 +6,7 @@
     <meta name="keywords" content=""/>
     <meta name="description" content="">
     <meta name="author" content="ThemeREX">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700'>
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,700,700italic' rel='stylesheet'
@@ -13,13 +14,15 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="http://alliance-html.themerex.net/assets/skin/default_skin/css/theme.css">
     <link rel="stylesheet" type="text/css" href="http://alliance-html.themerex.net/assets/allcp/forms/css/forms.css">
-    <link rel="shortcut icon" href="http://alliance-html.themerex.net/assets/img/favicon.ico">
+    <link rel="shortcut icon" href="icon.png">
 </head>
 
 <body class="forms-layouts">
     <div id="main">
         <header class="navbar navbar-fixed-top bg-dark">
 <!-- navbar for leftside -->
+<div>   
+        
            <ul class="nav navbar-nav navbar-left">
                 <li class='breadcrumb-icon' style="background-color: rgb(255, 0, 0)">
                     <a href="/hostel">
@@ -29,12 +32,13 @@
                 <li class="breadcrumb-active">
                     <a href="/hostel" style="font-size: 20px">Hostel Management</a>
                 </li>
-            </ul>  
+            </ul>
+        
 <!-- navbar for right -->
             <ul class="nav navbar-nav navbar-right">    
                 <li class="dropdown dropdown-fuse">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <span class="hidden-xs">{{ user.username }} </span>
+                    <span  class="hidden-xs">{{ user.username }} </span>
                     </a>
                     <ul class="dropdown-menu list-group keep-dropdown w250" role="menu">
                         <li class="dropdown-header clearfix">
@@ -89,7 +93,7 @@
                                     
                                 </div>
                                 <div class="panel-body">
-                                    <p>Select to initiate the request to the administration to change your room from the room presently allotted to you.</br></p>
+                                    <p>Select to initiate the request to the administration to change your room to new room from the room that is  presently allotted to you.</br></p>
                                     <p></br></p>
                                         <div class="btn btn-default btn-lg mb5"><a href = "change_req/">Request</a></div>
                                 </div>
@@ -134,13 +138,25 @@
                 <h3 class="text-center mt10 mb25 fw400" style="margin-top: 75px;"> Welcome {{diff.user}} </h3>
     
                 <div class="row">
+                <div class="col-sm-6 col-lg-3">
+                        <div class="bs-component">
+                            <div class="panel panel-success">
+                                <div class="panel-heading">
+                                    <span class="panel-title">Register New Student</span>
+                                </div>
+                                <div class="panel-body">
+                                    <p>Select to proceed and see the rooms which are vacant and the further number of students that can be accommodated</p>
+                                    <p></br></p>
+                                <div class="btn btn-default btn-lg mb5"><a href = "register/">Proceed</a></div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
                     <div class="col-sm-6 col-lg-3">
                         <div class="bs-component">
                             <div class="panel panel-primary">
                                 <div class="panel-heading">
                                     <span class="panel-title">Allocate Room</span>
-    
-                                
                                 </div>
                                 <div class="panel-body">
                                     <p>Allot a new room to a student that hasn't been allotted a room already </br></br></p>
@@ -154,9 +170,7 @@
                         <div class="bs-component">
                             <div class="panel panel-warning">
                                 <div class="panel-heading">
-                                    <span class="panel-title">Change Room</span>
-    
-                                    
+                                    <span class="panel-title">Change Room</span>     
                                 </div>
                                 <div class="panel-body">
                                     <p>Select to proceed with sanctioning the change room request of the student with his details.</br></p>

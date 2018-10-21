@@ -1,0 +1,141 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <title>Registration</title>
+</head>
+    
+    <body style="background-color:#e7ebff; padding-top: 90px;">
+
+        {% if registered %}
+        <strong>Welcome to <a href="/hostel/"> Homepage</a></strong>
+        {% else %}    
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3"  style="background-color:white;">
+                    <h3 style="text-align:center">Registration Form</h3>
+                    <form class="form-horizontal" action='/hostel/register/' method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                            <div class="control-group">
+                                <!-- Username -->
+                                <label class="control-label"  for="{{ user_form.username.id_for_label }}">Roll No</label>
+                                <div class="controls">
+                                <input type="text" maxlength="100" id="{{ user_form.username.id_for_label }}" name="{{ user_form.username.html_name }}" placeholder="Like:201652026" class="input-xlarge">
+                                <p class="help-block">Username can contain any letters or numbers, without spaces</p>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <!-- First Name -->
+                                    <label class="control-label"  for="{{ user_form.first_name.id_for_label }}">First Name</label>
+                                    <div class="controls">
+                                    <input type="text" maxlength="100" id="{{ user_form.first_name.id_for_label }}" name="{{ user_form.first_name.html_name }}" placeholder="" class="input-xlarge">
+                                    <p class="help-block">Firstname can contain only characters</p>
+                                    </div>
+                            </div>
+                            <div class="control-group">
+                                <!-- Last Name -->
+                                    <label class="control-label"  for="{{ user_form.last_name.id_for_label }}">Last Name</label>
+                                    <div class="controls">
+                                    <input type="text" maxlength="100" id="{{ user_form.last_name.id_for_label }}" name="{{ user_form.last_name.html_name }}" placeholder="" class="input-xlarge">
+                                    <p class="help-block">Lastname can contain only characters</p>
+                                    </div>
+                            </div>
+                            <div class="control-group">
+                                    <!-- Email Address -->
+                                        <label class="control-label"  for="{{ user_form.email.id_for_label }}">Email</label>
+                                        <div class="controls">
+                                        <input type="email" id="{{ user_form.email.id_for_label }}" name="{{ user_form.email.html_name }}" placeholder="" class="input-xlarge">
+                                        <p class="help-block">Please provide your E-mail</p>
+                                        </div>
+                            </div>
+
+                            <div class="control-group">
+                                    <!-- Password -->
+                                        <label class="control-label"  for="{{ user_form.password.id_for_label }}">Password</label>
+                                        <div class="controls">
+                                        <input type="password" id="{{ user_form.password.id_for_label }}" name="{{ user_form.password.html_name }}" placeholder="" class="input-xlarge">
+                                        <p class="help-block">Password should be at least 4 characters</p>
+                                        </div>
+                            </div>
+
+                            <div class="control-group">
+                                <!-- Gender-->
+                                <label class="control-label" for="{{student_form.gender.id_for_label}}">Gender</label>
+                                <div class="controls">
+                                <input type="text" id="{{student_form.gender.id_for_label}}" name="gender" placeholder="M or F" class="input-xlarge">
+                                <p class="help-block">Please fill your gender</p>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                    <!-- Age-->
+                                    <label class="control-label" for="{{student_form.age.id_for_label}}">Age</label>
+                                    <div class="controls">
+                                    <input type="number" id="{{student_form.age.id_for_label}}" name="age" placeholder="" class="input-xlarge">
+                                    <p class="help-block">Please fill your Age</p>
+                                    </div>
+                            </div>
+
+                            <div class="control-group">
+                                    <!-- Father Name -->
+                                    <label class="control-label" for="{{student_form.father_name.id_for_label}}">Father Name</label>
+                                    <div class="controls">
+                                    <input type="text" maxlength="100" id="{{student_form.father_name.id_for_label}}" name="father_name" placeholder="" class="input-xlarge">
+                                    <p class="help-block">Please fill your father name</p>
+                                    </div>
+                            </div>
+
+                            <div class="control-group">
+                                    <!-- Date of Birth -->
+                                    <label class="control-label" for="{{student_form.date_of_birth.id_for_label}}">Birth Date</label>
+                                    <div class="controls">
+                                    <input type="date" id="{{student_form.date_of_birth.id_for_label}}" name="date_of_birth" placeholder="" class="input-xlarge">
+                                    <p class="help-block">Please fill your date of birth</p>
+                                    </div>
+                            </div>
+                            <div class="control-group">
+                                    <!-- Fee Receipt -->
+                                    <label class="control-label" for="{{student_form.fee_receipt.id_for_label}}">Fee Receipt No</label>
+                                    <div class="controls">
+                                    <input type="text" maxlength="12" id="{{student_form.fee_receipt.id_for_label}}" name="fee_receipt" placeholder="" class="input-xlarge">
+                                    <p class="help-block">Please fill your fee receipt number</p>
+                                    </div>
+                            </div>
+                            <div class="control-group">
+                                    <!-- Address -->
+                                    <label class="control-label" for="{{student_form.per_address.id_for_label}}">Permanent Address</label>
+                                    <div class="controls">
+                                    <input type="text" maxlength="200" id="{{student_form.per_address.id_for_label}}" name="per_address" placeholder="" class="input-xlarge">
+                                    <p class="help-block">Please fill your Permanent address</p>
+                                    </div>
+                            </div>
+                            <div class="control-group">
+                                    <!-- Batch -->
+                                    <label class="control-label" for="{{student_form.join_year.id_for_label}}">Batch</label>
+                                    <div class="controls">
+                                    <input type="number" id="{{student_form.join_year.id_for_label}}" name="join_year" placeholder="" class="input-xlarge">
+                                    <p class="help-block">Please fill your join year</p>
+                                    </div>
+                            </div>
+
+                            {{ diff_form.as_p }}
+    
+
+                            <div class="control-group">
+                                <!-- Button -->
+                                <div class="controls">
+                                <button class="btn btn-success">Register</button>
+ 
+                                </div>
+                            </div>
+                       
+                    </form>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+    
