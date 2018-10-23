@@ -23,13 +23,11 @@ class Student(models.Model):
     join_year     = models.IntegerField(default=2016)
     room          = models.ForeignKey(Room, on_delete=models.CASCADE, null=True)
     gender        = models.CharField(max_length = 1)
-    age           = models.IntegerField(default=0)
     father_name   =  models.CharField(max_length = 200, null=True)
     date_of_birth =  models.DateField(null =True, blank = True)
     fee_receipt   =  models.CharField(max_length = 20, null =True)
     per_address   =  models.TextField(null =True)
     roll_no       = models.CharField(max_length = 10, primary_key =True,unique = True )
-    graduate      = models.BooleanField(default = False)
 
     def __str__(self):
         return str(self.roll_no)

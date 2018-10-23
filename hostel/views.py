@@ -30,6 +30,7 @@ def register(request):
         diff_from    = DiffForm(data = request.POST)
         student_from = StudentForm(data = request.POST)
 
+        
         if user_from.is_valid() and diff_from.is_valid() and student_from.is_valid():
             user = user_from.save()
             # user.username(label_tag='roll_no')
@@ -43,7 +44,7 @@ def register(request):
             diff.user = user
             diff.save()
 
-            student  = student_from.save()
+            student  = student_from.save(commit = False)
             student.roll_no = user
             student.save()
 
@@ -63,6 +64,7 @@ def register(request):
         'user_form' : user_from,
         'student_form' : student_from,
         'diff_form' : diff_from,
+        'registered': registered,
     })
 
 # --------- Loginpage view --------
@@ -97,13 +99,77 @@ def logout1(request):
     return redirect('/hostel/login/')
 
 # -------Allocate Room ------
-# @login_required
-# def allocate(request):
+@login_required
+def allocate(request):
+
+    if request.method == 'POST':
+
+        roll_no = request.POST['roll_no']
+        room_no = request.POST['room_no']
+
+        try:
+            student_roll_no = User.objects.get(username = roll_no)
+            student = Student.objects.get(roll_no = student_roll_no)
+            room_new = Room.objects.get(room_no = room_no)
+            
+            
+        except ObjectDoesNotExist:
+            messages.add_message(request, messages.ERROR, 'Check the details again!')
+            return render(request, 'hostel/student_allocate.html', {})
+        
+        if room_new is not None and student.room is None:
+            if room_new.vacancy > 0:
+                student.room = room_new
+                room_new.vacancy -= 1
+                student.save()
+                room_new.save()
+                return HttpResponseRedirect('/hostel/')
+            else:
+                html = '<html><body style="background-color:rgb(123,225,236); text-align:center; margin-top:100px;"><h2>Sorry, The Room is full</h2> </body></html>'
+                return HttpResponse(html)
+        else:
+            return HttpResponseRedirect('/hostel/')
+    
+    else:
+        return render(request, 'hostel/student_allocate.html', {})
 
 
+@login_required
+def student_details(request):
+    student = Student.objects.get(roll_no = request.user)
+    room = Room.objects.get(room_no = student.room.room_no)
+    students  = Student.objects.filter(room = student.room.room_no)
+    return render(request, 'hostel/student_details.html', {'student': student,'room1': room,'students':students })
 
 
+@login_required
+def change(request):
+    if request.method == 'POST':
+        roll_no  = request.POST['roll_no']
+        room_no  = request.POST['room_no']
 
-
-
-
+        try:
+            user = User.objects.get(username = roll_no)
+            student = Student.objects.get(roll_no = user)
+            room_new = Room.objects.get(room_no = room_no)
+       
+        except ObjectDoesNotExist:
+            messages.add_message(request, messages.ERROR, 'Check the details again!')
+            return render(request, 'hostel/student_change.html', {})
+        
+        if room_new is not None and student.room is not None:
+            if room_new.vacancy > 0 and student.room.vacancy < 3:
+                student.room.vacancy += 1
+                student.room = room_new
+                room_new.vacancy -= 1
+                student.room.save()
+                student.save()
+                room_new.save()
+                return HttpResponseRedirect('/hostel/')
+            else:
+                html = '<html><body style="background-color:rgb(123,225,236); text-align:center; margin-top:100px;"><h2>Sorry, The Room is full</h2> </body></html>'
+                return HttpResponse(html)
+        else:
+            return HttpResponseRedirect('/hostel/')
+    else:
+        return render(request, 'hostel/student_change.html', {})

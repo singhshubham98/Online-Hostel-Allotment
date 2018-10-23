@@ -1,141 +1,231 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-    <head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <title>Registration</title>
+<head>
+    <meta charset="utf-8">
+    <title>Hostel Management - Allocate Room</title>
+    <meta name="keywords" content=""/>
+    <meta name="description" content="">
+    <meta name="author" content="ThemeREX">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700'>
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,700,700italic' rel='stylesheet'
+          type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="http://alliance-html.themerex.net/assets/skin/default_skin/css/theme.css">
+    <link rel="stylesheet" type="text/css" href="http://alliance-html.themerex.net/assets/allcp/forms/css/forms.css">
+    <link rel="shortcut icon" href="http://alliance-html.themerex.net/assets/img/favicon.ico">
+
 </head>
-    
-    <body style="background-color:#e7ebff; padding-top: 90px;">
 
-        {% if registered %}
-        <strong>Welcome to <a href="/hostel/"> Homepage</a></strong>
-        {% else %}    
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3"  style="background-color:white;">
-                    <h3 style="text-align:center">Registration Form</h3>
-                    <form class="form-horizontal" action='/hostel/register/' method="POST" enctype="multipart/form-data">
-                        {% csrf_token %}
-                            <div class="control-group">
-                                <!-- Username -->
-                                <label class="control-label"  for="{{ user_form.username.id_for_label }}">Roll No</label>
-                                <div class="controls">
-                                <input type="text" maxlength="100" id="{{ user_form.username.id_for_label }}" name="{{ user_form.username.html_name }}" placeholder="Like:201652026" class="input-xlarge">
-                                <p class="help-block">Username can contain any letters or numbers, without spaces</p>
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <!-- First Name -->
-                                    <label class="control-label"  for="{{ user_form.first_name.id_for_label }}">First Name</label>
-                                    <div class="controls">
-                                    <input type="text" maxlength="100" id="{{ user_form.first_name.id_for_label }}" name="{{ user_form.first_name.html_name }}" placeholder="" class="input-xlarge">
-                                    <p class="help-block">Firstname can contain only characters</p>
-                                    </div>
-                            </div>
-                            <div class="control-group">
-                                <!-- Last Name -->
-                                    <label class="control-label"  for="{{ user_form.last_name.id_for_label }}">Last Name</label>
-                                    <div class="controls">
-                                    <input type="text" maxlength="100" id="{{ user_form.last_name.id_for_label }}" name="{{ user_form.last_name.html_name }}" placeholder="" class="input-xlarge">
-                                    <p class="help-block">Lastname can contain only characters</p>
-                                    </div>
-                            </div>
-                            <div class="control-group">
-                                    <!-- Email Address -->
-                                        <label class="control-label"  for="{{ user_form.email.id_for_label }}">Email</label>
-                                        <div class="controls">
-                                        <input type="email" id="{{ user_form.email.id_for_label }}" name="{{ user_form.email.html_name }}" placeholder="" class="input-xlarge">
-                                        <p class="help-block">Please provide your E-mail</p>
-                                        </div>
-                            </div>
-
-                            <div class="control-group">
-                                    <!-- Password -->
-                                        <label class="control-label"  for="{{ user_form.password.id_for_label }}">Password</label>
-                                        <div class="controls">
-                                        <input type="password" id="{{ user_form.password.id_for_label }}" name="{{ user_form.password.html_name }}" placeholder="" class="input-xlarge">
-                                        <p class="help-block">Password should be at least 4 characters</p>
-                                        </div>
-                            </div>
-
-                            <div class="control-group">
-                                <!-- Gender-->
-                                <label class="control-label" for="{{student_form.gender.id_for_label}}">Gender</label>
-                                <div class="controls">
-                                <input type="text" id="{{student_form.gender.id_for_label}}" name="gender" placeholder="M or F" class="input-xlarge">
-                                <p class="help-block">Please fill your gender</p>
-                                </div>
-                            </div>
-
-                            <div class="control-group">
-                                    <!-- Age-->
-                                    <label class="control-label" for="{{student_form.age.id_for_label}}">Age</label>
-                                    <div class="controls">
-                                    <input type="number" id="{{student_form.age.id_for_label}}" name="age" placeholder="" class="input-xlarge">
-                                    <p class="help-block">Please fill your Age</p>
-                                    </div>
-                            </div>
-
-                            <div class="control-group">
-                                    <!-- Father Name -->
-                                    <label class="control-label" for="{{student_form.father_name.id_for_label}}">Father Name</label>
-                                    <div class="controls">
-                                    <input type="text" maxlength="100" id="{{student_form.father_name.id_for_label}}" name="father_name" placeholder="" class="input-xlarge">
-                                    <p class="help-block">Please fill your father name</p>
-                                    </div>
-                            </div>
-
-                            <div class="control-group">
-                                    <!-- Date of Birth -->
-                                    <label class="control-label" for="{{student_form.date_of_birth.id_for_label}}">Birth Date</label>
-                                    <div class="controls">
-                                    <input type="date" id="{{student_form.date_of_birth.id_for_label}}" name="date_of_birth" placeholder="" class="input-xlarge">
-                                    <p class="help-block">Please fill your date of birth</p>
-                                    </div>
-                            </div>
-                            <div class="control-group">
-                                    <!-- Fee Receipt -->
-                                    <label class="control-label" for="{{student_form.fee_receipt.id_for_label}}">Fee Receipt No</label>
-                                    <div class="controls">
-                                    <input type="text" maxlength="12" id="{{student_form.fee_receipt.id_for_label}}" name="fee_receipt" placeholder="" class="input-xlarge">
-                                    <p class="help-block">Please fill your fee receipt number</p>
-                                    </div>
-                            </div>
-                            <div class="control-group">
-                                    <!-- Address -->
-                                    <label class="control-label" for="{{student_form.per_address.id_for_label}}">Permanent Address</label>
-                                    <div class="controls">
-                                    <input type="text" maxlength="200" id="{{student_form.per_address.id_for_label}}" name="per_address" placeholder="" class="input-xlarge">
-                                    <p class="help-block">Please fill your Permanent address</p>
-                                    </div>
-                            </div>
-                            <div class="control-group">
-                                    <!-- Batch -->
-                                    <label class="control-label" for="{{student_form.join_year.id_for_label}}">Batch</label>
-                                    <div class="controls">
-                                    <input type="number" id="{{student_form.join_year.id_for_label}}" name="join_year" placeholder="" class="input-xlarge">
-                                    <p class="help-block">Please fill your join year</p>
-                                    </div>
-                            </div>
-
-                            {{ diff_form.as_p }}
-    
-
-                            <div class="control-group">
-                                <!-- Button -->
-                                <div class="controls">
-                                <button class="btn btn-success">Register</button>
- 
-                                </div>
-                            </div>
-                       
-                    </form>
-                {% endif %}
-                </div>
+<body class="forms-layouts">
+<div id="main">
+    <header class="navbar navbar-fixed-top bg-dark">
+        
+        <ul class="nav navbar-nav navbar-left">
+                <li class="breadcrumb-icon" style="background-color:rgb(255,0,0)">
+                        <a href="/hostel">
+                            <span class="fa fa-home"></span>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-active">
+                        <a href="/hostel" style="font-size: 20px">Hostel Management</a>
+                    </li>
+                </ul>
+        
+            
+            
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+             <li class="dropdown dropdown-fuse">
+                <a href="#" class="dropdown-toggle fw600" data-toggle="dropdown">
+                    <span class="hidden-xs"><name>{{ request.user.username }}</name> </span>
+                   
+                </a>
+                <ul class="dropdown-menu list-group keep-dropdown w250" role="menu">
+   
+                            <li class="dropdown-header clearfix">
+                                <a href="/hostel/logout/" class="btn btn-primary btn-sm btn-bordered">
+                                    <span class="fa fa-power-off pr5"></span> Logout
+                                </a>
+                            </li> 
+                </ul>
+            </li>
+        </ul>
+    </header>
+        <header id="topbar" class="alt" style="margin-top: 75px;">
+            <div class="topbar-left">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-link">
+                        <a href="/hostel">Home</a>
+                    </li>
+                    <li class="breadcrumb-current-item">/ Registration</li>
+                </ol>
             </div>
-        </div>
-    </body>
-</html>
+            
+        </header>
+        {% if registered %}
+        <a href="/hostel/">Return to the homepage.</a><br />
+         {% else %}
+        <section id="content" class="table-layout animated fadeIn">
+            <div class="chute chute-center">
+                    <div class="tab-content mw900 center-block center-children">
+                        <div class="allcp-form theme-primary tab-pane active mw600"  id="contact" role="tabpanel">
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <span class="panel-title">Registration Form</span>
+                                    <span></br></br>Note: You can register a perticular student by entering his/her valid details.</span>
+                                </div>
+                                 <!-- Form  -->
+                                 <form class="form-horizontal" action='/hostel/register/' method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                        <div class="control-group">
+                                            <!-- Username -->
+                                            <label class="control-label"  for="{{ user_form.username.id_for_label }}">Roll No</label>
+                                            <div class="controls">
+                                            <input type="text" maxlength="100" id="{{ user_form.username.id_for_label }}" name="{{ user_form.username.html_name }}" placeholder="Like:201652026" class="input-xlarge" required>
+                                            <p class="help-block">Username can contain any letters or numbers, without spaces</p>
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <!-- First Name -->
+                                                <label class="control-label"  for="{{ user_form.first_name.id_for_label }}">First Name</label>
+                                                <div class="controls">
+                                                <input type="text" maxlength="100" id="{{ user_form.first_name.id_for_label }}" name="{{ user_form.first_name.html_name }}" placeholder="" class="input-xlarge" required>
+                                                <p class="help-block">Firstname can contain only characters</p>
+                                                </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <!-- Last Name -->
+                                                <label class="control-label"  for="{{ user_form.last_name.id_for_label }}">Last Name</label>
+                                                <div class="controls">
+                                                <input type="text" maxlength="100" id="{{ user_form.last_name.id_for_label }}" name="{{ user_form.last_name.html_name }}" placeholder="" class="input-xlarge" required>
+                                                <p class="help-block">Lastname can contain only characters</p>
+                                                </div>
+                                        </div>
+                                        <div class="control-group">
+                                                <!-- Email Address -->
+                                                    <label class="control-label"  for="{{ user_form.email.id_for_label }}">Email</label>
+                                                    <div class="controls">
+                                                    <input type="email" id="{{ user_form.email.id_for_label }}" name="{{ user_form.email.html_name }}" placeholder="" class="input-xlarge" required>
+                                                    <p class="help-block">Please provide your E-mail</p>
+                                                    </div>
+                                        </div>
+            
+                                        <div class="control-group">
+                                                <!-- Password -->
+                                                    <label class="control-label"  for="{{ user_form.password.id_for_label }}">Password</label>
+                                                    <div class="controls">
+                                                    <input type="password" id="{{ user_form.password.id_for_label }}" name="{{ user_form.password.html_name }}" placeholder="" class="input-xlarge" required>
+                                                    <p class="help-block">Password should be at least 4 characters</p>
+                                                    </div>
+                                        </div>
+            
+                                        <div class="control-group">
+                                            <!-- Gender-->
+                                            <label class="control-label" for="{{student_form.gender.id_for_label}}">Gender</label>
+                                            <div class="controls">
+                                            <input type="text" id="{{student_form.gender.id_for_label}}" name="gender" placeholder="M or F" class="input-xlarge" required>
+                                            <p class="help-block">Please fill your gender</p>
+                                            </div>
+                                        </div>
+            
+                                        <div class="control-group">
+                                                <!-- Father Name -->
+                                                <label class="control-label" for="{{student_form.father_name.id_for_label}}">Father Name</label>
+                                                <div class="controls">
+                                                <input type="text" maxlength="100" id="{{student_form.father_name.id_for_label}}" name="father_name" placeholder="" class="input-xlarge" required>
+                                                <p class="help-block">Please fill your father name</p>
+                                                </div>
+                                        </div>
+            
+                                        <div class="control-group">
+                                                <!-- Date of Birth -->
+                                                <label class="control-label" for="{{student_form.date_of_birth.id_for_label}}">Birth Date</label>
+                                                <div class="controls">
+                                                <input type="date" id="{{student_form.date_of_birth.id_for_label}}" name="date_of_birth" placeholder="" class="input-xlarge" required>
+                                                <p class="help-block">Please fill your date of birth</p>
+                                                </div>
+                                        </div>
+                                        <div class="control-group">
+                                                <!-- Fee Receipt -->
+                                                <label class="control-label" for="{{student_form.fee_receipt.id_for_label}}">Fee Receipt No</label>
+                                                <div class="controls">
+                                                <input type="text" id="{{student_form.fee_receipt.id_for_label}}" name="fee_receipt" placeholder="" class="input-xlarge" required>
+                                                <p class="help-block">Please fill your fee receipt number</p>
+                                                </div>
+                                        </div>
+                                        <div class="control-group">
+                                                <!-- Address -->
+                                                <label class="control-label" for="{{student_form.per_address.id_for_label}}">Permanent Address</label>
+                                                <div class="controls">
+                                                <input type="text" maxlength="200" id="{{student_form.per_address.id_for_label}}" name="per_address" placeholder="" class="input-xlarge" required>
+                                                <p class="help-block">Please fill your Permanent address</p>
+                                                </div>
+                                        </div>
+                                        <div class="control-group">
+                                                <!-- Batch -->
+                                                <label class="control-label" for="{{student_form.join_year.id_for_label}}">Batch</label>
+                                                <div class="controls">
+                                                <input type="number" id="{{student_form.join_year.id_for_label}}" name="join_year" placeholder="" class="input-xlarge" required>
+                                                <p class="help-block">Please fill your join year</p>
+                                                </div>
+                                        </div>
     
+                                        {{ diff_form.as_p }}
+                                        <div class="section">
+                                            <div class="smart-widget sm-left sml-80">
+                                                
+                                            </div>
+                                        <div class="section">
+                                            <div class="bs-component pull-left mt10">
+                                                
+                                            </div>
+                                            
+                                        </div>
+            
+                                        <div class="control-group">
+                                            <!-- Button -->
+                                            <div class="controls">
+                                            <button class="btn btn-success">Register</button>
+             
+                                            </div>
+                                        </div>
+                                   
+                                </form>
+                               
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </section>
+    </section>
+</div>
+<style>
+    .allcp-form .panel.heading-border:before,
+    .allcp-form .panel .heading-border:before {
+        transition: all 0.7s ease;
+    }
+</style>
+
+<script src="http://alliance-html.themerex.net/assets/js/jquery/jquery-1.11.3.min.js"></script>
+<script src="http://alliance-html.themerex.net/assets/js/jquery/jquery_ui/jquery-ui.min.js"></script>
+
+<!-- -------------- HighCharts Plugin -------------- -->
+<script src="http://alliance-html.themerex.net/assets/js/plugins/highcharts/highcharts.js"></script>
+
+<!-- -------------- MonthPicker JS -------------- -->
+<script src="http://alliance-html.themerex.net/assets/allcp/forms/js/jquery-ui-monthpicker.min.js"></script>
+
+<!-- -------------- Theme Scripts ---------------->
+<script src="http://alliance-html.themerex.net/assets/js/utility/utility.js"></script>
+<script src="http://alliance-html.themerex.net/assets/js/demo/demo.js"></script>
+<script src="http://alliance-html.themerex.net/assets/js/main.js"></script>
+<script src="http://alliance-html.themerex.net/assets/js/demo/widgets_sidebar.js"></script>
+{#<script src="http://alliance-html.themerex.net/assets/js/pages/forms-layouts.js"></script>#}
+
+<!-- -------------- /Scripts -------------- -->
+
+</body>
+
+</html>
