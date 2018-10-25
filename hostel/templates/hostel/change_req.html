@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Hostel Management - Change request</title>
+    <meta name="keywords" content=""/>
+    <meta name="description" content="">
+    <meta name="author" content="ThemeREX">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700'>
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,700,700italic' rel='stylesheet'
+          type='text/css'>
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="http://alliance-html.themerex.net/assets/skin/default_skin/css/theme.css">
+    <link rel="stylesheet" type="text/css" href="http://alliance-html.themerex.net/assets/allcp/forms/css/forms.css">
+    <link rel="shortcut icon" href="http://alliance-html.themerex.net/assets/img/favicon.ico">
+</head>
+
+<body class="forms-layouts">
+<div id="main">
+    <header class="navbar navbar-fixed-top bg-dark">
+        
+        <ul class="nav navbar-nav navbar-left">
+                <li class="breadcrumb-icon" style="background-color:rgb(255,0,0)">
+                        <a href="/hostel">
+                            <span class="fa fa-home"></span>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-active">
+                        <a href="/hostel" style="font-size: 20px">Hostel Management</a>
+                    </li>
+                </ul>
+        
+            
+            
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            
+            
+            <li class="dropdown dropdown-fuse">
+                <a href="#" class="dropdown-toggle fw600" data-toggle="dropdown">
+                    <span class="hidden-xs"><name>{{ request.user.first_name }}</name> </span>
+                </a>
+                <ul class="dropdown-menu list-group keep-dropdown w250" role="menu">
+                    <li class="dropdown-header clearfix"> 
+                            <a href="/hostel/logout/" class="btn btn-primary btn-sm btn-bordered">
+                            <span class="fa fa-power-off pr5"></span> Logout </a>
+                    </li>
+                   
+                    
+                </ul>
+            </li>
+        </ul>
+    </header>
+    <!-- -------------- /Header  -------------- -->
+
+    <!-- -------------- Sidebar  -------------- -->
+  
+
+    <!-- -------------- Main Wrapper -------------- -->
+    <section id="content_wrapper" style="margin-left: 10px" >
+
+        <!-- -------------- Topbar Menu Wrapper -------------- -->
+        <div id="topbar-dropmenu-wrapper">
+            <div class="topbar-menu row">
+                <div class="col-xs-4 col-sm-2">
+                    <a href="#" class="service-box bg-danger">
+                        <span class="fa fa-music"></span>
+                        <span class="service-title">Audio</span>
+                    </a>
+                </div>
+                <div class="col-xs-4 col-sm-2">
+                    <a href="#" class="service-box bg-success">
+                        <span class="fa fa-picture-o"></span>
+                        <span class="service-title">Images</span>
+                    </a>
+                </div>
+                <div class="col-xs-4 col-sm-2">
+                    <a href="#" class="service-box bg-primary">
+                        <span class="fa fa-video-camera"></span>
+                        <span class="service-title">Videos</span>
+                    </a>
+                </div>
+                <div class="col-xs-4 col-sm-2">
+                    <a href="#" class="service-box bg-alert">
+                        <span class="fa fa-envelope"></span>
+                        <span class="service-title">Messages</span>
+                    </a>
+                </div>
+                <div class="col-xs-4 col-sm-2">
+                    <a href="#" class="service-box bg-system">
+                        <span class="fa fa-cog"></span>
+                        <span class="service-title">Settings</span>
+                    </a>
+                </div>
+                <div class="col-xs-4 col-sm-2">
+                    <a href="#" class="service-box bg-dark">
+                        <span class="fa fa-user"></span>
+                        <span class="service-title">Users</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- -------------- /Topbar Menu Wrapper -------------- -->
+
+        <!-- -------------- Topbar -------------- -->
+        <header id="topbar" class="alt" style="
+    margin-top: 75px;
+">
+            <div class="topbar-left">
+                <ol class="breadcrumb">
+                    <!-- <li class="breadcrumb-icon">
+                        <a href="dashboard1.html">
+                            <span class="fa fa-home"></span>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-active">
+                        <a href="dashboard1.html">Hostel Management</a>
+                    </li> -->
+                    <li class="breadcrumb-link">
+                        <a href="/hostel">Home</a>
+                    </li>
+                    <li class="breadcrumb-current-item">/ Change Room</li>
+                </ol>
+            </div>
+            
+        </header>
+        <!-- -------------- /Topbar -------------- -->
+
+        <!-- -------------- Content -------------- -->
+        <section id="content" class="table-layout animated fadeIn">
+
+           
+            <!-- -------------- Column Center -------------- -->
+            <div class="chute chute-center">
+                <div class="">
+
+                    <div class="tab-content mw900 center-block center-children">
+
+
+                        <!-- -------------- Contact Form -------------- -->
+                        <div class="allcp-form theme-primary tab-pane active mw600"  id="contact" role="tabpanel">
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <span class="panel-title">Change Room Request</span>
+                                    <span></br></br>    Note: You can put a request to change your current alloted room giving an appropriate reason for the request.
+
+</span>
+                                <!-- -------------- /Panel Heading -------------- -->
+
+                                <form id="change_req_form" method="post" action="/hostel/change_req/">
+                                    {% csrf_token %}
+                                    <div class="panel-body pn">
+                                        
+                                        
+                                        <!-- -------------- /section -------------- -->
+
+                                        <div class="section">
+                                            <label for="comment" class="field prepend-icon">
+                          <textarea class="gui-textarea" name="reason"
+                                    placeholder="Reason for request"></textarea>
+                                                <label for="comment" class="field-icon">
+                                                    <i class="fa fa-question-circle"></i>
+                                                </label>
+                                            </label>
+                                        </div>
+                                        <!-- -------------- /section -------------- -->
+
+                                        <div class="section">
+                                            
+                                            <div class="section">
+                                            <div class="bs-component pull-left mt10">
+                                                <div class="checkbox-custom checkbox-primary mb10">
+                                                    <input type="checkbox" name="flag" checked="" id="agree">
+                                                    <label for="agree">Are you sure?</label>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                            <!-- -------------- /Block Widget -------------- -->
+                                        </div>
+                                        <!-- -------------- /section -------------- -->
+
+                                    </div>
+                                    <!-- -------------- /Form -------------- -->
+                                    <div class="section text-right">
+                                        <button type="submit" class="btn btn-primary btn-bordered ph40">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- -------------- /Panel -------------- -->
+                        </div>
+                        <!-- -------------- /Contact Form -------------- -->
+
+                      
+                       
+
+                    </div>
+
+                </div>
+            </div>
+            <!-- -------------- /Column Center -------------- -->
+
+        </section>
+        <!-- -------------- /Content -------------- -->
+
+    </section>
+
+    <!-- -------------- Sidebar Right -------------- -->
+    
+    <!-- -------------- /Sidebar Right -------------- -->
+
+</div>
+<!-- -------------- /Body Wrap  -------------- -->
+
+<style>
+    /* demo page styles */
+    .allcp-form .panel.heading-border:before,
+    .allcp-form .panel .heading-border:before {
+        transition: all 0.7s ease;
+    }
+</style>
+
+<!-- -------------- Scripts -------------- -->
+
+<!-- -------------- jQuery -------------- -->
+<script src="http://alliance-html.themerex.net/assets/js/jquery/jquery-1.11.3.min.js"></script>
+<script src="http://alliance-html.themerex.net/assets/js/jquery/jquery_ui/jquery-ui.min.js"></script>
+
+<!-- -------------- HighCharts Plugin -------------- -->
+<script src="http://alliance-html.themerex.net/assets/js/plugins/highcharts/highcharts.js"></script>
+
+<!-- -------------- MonthPicker JS -------------- -->
+<script src="http://alliance-html.themerex.net/assets/allcp/forms/js/jquery-ui-monthpicker.min.js"></script>
+
+<!-- -------------- Theme Scripts ---------------->
+<script src="http://alliance-html.themerex.net/assets/js/utility/utility.js"></script>
+<script src="http://alliance-html.themerex.net/assets/js/demo/demo.js"></script>
+<script src="http://alliance-html.themerex.net/assets/js/main.js"></script>
+<script src="http://alliance-html.themerex.net/assets/js/demo/widgets_sidebar.js"></script>
+{#<script src="http://alliance-html.themerex.net/assets/js/pages/forms-layouts.js"></script>#}
+
+<!-- -------------- /Scripts -------------- -->
+
+</body>
+
+</html>
