@@ -49,6 +49,7 @@ def register(request):
             student.save()
 
             registered = True
+            return HttpResponseRedirect('/hostel/')
 
         else:
             print user_from.errors, student_from.errors, diff_from.errors
@@ -115,7 +116,7 @@ def allocate(request):
             
         except ObjectDoesNotExist:
             messages.add_message(request, messages.ERROR, 'Check the details again!')
-            return render(request, 'hostel/student_allocate.html', {})
+            return render(request, 'hostel/staff_allocate_room.html', {})
         
         if room_new is not None and student.room is None:
             if room_new.vacancy > 0:
@@ -131,7 +132,7 @@ def allocate(request):
             return HttpResponseRedirect('/hostel/')
     
     else:
-        return render(request, 'hostel/student_allocate.html', {})
+        return render(request, 'hostel/staff_allocate_room.html', {})
 
 
 @login_required
@@ -141,6 +142,25 @@ def student_details(request):
     students  = Student.objects.filter(room = student.room.room_no)
     return render(request, 'hostel/student_details.html', {'student': student,'room1': room,'students':students })
 
+
+@login_required
+def change_request(request):
+
+    if request.method == 'POST':
+        
+        student = Student.objects.get(roll_no = request.user)
+        reason  = request.POST['reason']
+        flag    = request.POST['flag']
+
+        if flag:
+            request = Change.objects.create(student = student, reason = reason)
+        else:
+            return HttpResponseRedirect('/hostel/')
+        
+        return HttpResponseRedirect('/hostel/success')
+    else:
+        return render(request, 'hostel/change_req.html', {})
+        
 
 @login_required
 def change(request):
@@ -155,14 +175,15 @@ def change(request):
        
         except ObjectDoesNotExist:
             messages.add_message(request, messages.ERROR, 'Check the details again!')
-            return render(request, 'hostel/student_change.html', {})
+            return render(request, 'hostel/staff_change_room.html', {})
         
         if room_new is not None and student.room is not None:
-            if room_new.vacancy > 0 and student.room.vacancy < 3:
-                student.room.vacancy += 1
+            if room_new.vacancy > 0:
+                old_room = Room.objects.get(room_no = student.room.room_no)
+                old_room.vacancy += 1
                 student.room = room_new
                 room_new.vacancy -= 1
-                student.room.save()
+                old_room.save()
                 student.save()
                 room_new.save()
                 return HttpResponseRedirect('/hostel/')
@@ -172,4 +193,96 @@ def change(request):
         else:
             return HttpResponseRedirect('/hostel/')
     else:
-        return render(request, 'hostel/student_change.html', {})
+        return render(request, 'hostel/staff_change_room.html', {})
+
+@login_required
+def swap_request(request):
+    if request.method == 'POST':
+
+        stud2 = request.POST['stud2']
+        reason   = request.POST['reason']
+        flag     = request.POST['flag']
+
+        try:
+            user = User.objects.get(username = stud2)
+            student2  = Student.objects.get( roll_no = user)
+        except ObjectDoesNotExist:
+            messages.add_message(request, messages.ERROR, 'Check the roll number again!')
+            return render(request, 'hostel/swap_request.html', {})
+
+            student1 = Student.objects.get(roll_no = request.user)
+            if flag and student2.room is not None:
+                Swap.objects.create(student1 = student1, student2 = student2, reason = reason)
+                return HttpResponseRedirect('/hostel/success')
+            else:
+                return HttpResponseRedirect('/hostel/')
+    else:
+        return render(request, 'hostel/swap_request.html', {})
+
+@login_required
+def swap(request):
+
+    if request.method == 'POST':
+
+        roll_no1 = request.POST['roll_no1']
+        roll_no2 = request.POST['roll_no2']
+
+        try:
+            user1 = User.objects.get(user = roll_no1)
+            student1 = Student.objects.get(roll_no = user1)
+            user2 = User.objects.get(user = roll_no2)
+            student2 = Student.objects.get(roll_no = user2)
+
+        except ObjectDoesNotExist:
+            messages.add_message(request, messages.ERROR, 'check the details again!')
+            return HttpResponseRedirect('hostel/staff_swap_room.html', {})
+        
+        if student1.room is not None and student2.room is not None:
+
+            room1 = student1.room
+            room2 = student2.room
+            student1.room = room2
+            student2.room = room1
+            student1.save()
+            student2.save()
+            html = '<html><body style="background-color:rgb(123,225,236); text-align:center; margin-top:100px;"><h2>Sorry, The Room is full</h2> </body></html>'
+            return HttpResponse(html)
+        
+        else:
+            return HttpResponseRedirect('/hostel/')
+    
+    else:
+        return render(request, 'hostel/staff_swap_room.html', {})
+
+@login_required
+def swap_ack(request):
+
+    user = request.user
+    try:
+        req = Swap.objects.get(student2 = request.user.username)
+    except Swap.DoesNotExist:
+        req = None
+    if request.method == 'POST':
+
+        if '_accept' in request.POST:
+            req.accept = True
+            req.save()
+        if '_decline' in request.POST:
+            req.delete()
+        return HttpResponseRedirect('/hostel/success')
+    else:
+        return render(request, 'hostel/swap_ack.html', {'request': req, 'user': user})
+
+
+
+
+@login_required
+def success(request):
+    return render(request, 'hostel/success.html', {})
+
+
+
+       
+        
+
+
