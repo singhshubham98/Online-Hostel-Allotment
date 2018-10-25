@@ -14,7 +14,7 @@ class Room(models.Model):
     room_no = models.IntegerField(primary_key=True, unique=True)
     block_no = models.CharField(max_length=1, null=True)
     capacity = models.IntegerField(default=3)
-    vacancy = models.IntegerField(default=0)
+    vacancy = models.IntegerField(default=3)
 
     def __str__(self):
         return str(self.room_no)
@@ -25,7 +25,7 @@ class Student(models.Model):
     gender        = models.CharField(max_length = 1)
     father_name   =  models.CharField(max_length = 200, null=True)
     date_of_birth =  models.DateField(null =True, blank = True)
-    fee_receipt   =  models.CharField(max_length = 20, null =True)
+    fee_receipt   =  models.FileField(blank = True, null =True)
     per_address   =  models.TextField(null =True)
     roll_no       = models.CharField(max_length = 10, primary_key =True,unique = True )
 
