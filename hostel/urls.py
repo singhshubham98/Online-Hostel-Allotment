@@ -8,6 +8,11 @@ urlpatterns = [
     url(r'^login/$', views.user_login, name='login'),
     url(r'^logout/$', views.logout1, name='logout'),
     url(r'^allocate/$', views.allocate, name='allocate'),
-    url(r'^student_details',views.student_details, name='student_details'),
-    url(r'^change/$', views.change, name='change'),  
+    url(r'^student_details/$',views.student_details, name='student_details'),
+    url(r'^change/$', views.change, name='change'), 
+    url(r'^change_req/$', views.change_request, name='change_req'),
+    url(r'^swap/$', views.swap, name='swap'),
+    url(r'^swap_req/$', views.swap_request, name='swap_req'),
+    url(r'^success/$', views.success, name='success'),
+    url(r'^swap_ack/$', views.swap_ack, name='swap_ack'),
 ]
