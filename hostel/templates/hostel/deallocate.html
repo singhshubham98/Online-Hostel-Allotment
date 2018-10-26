@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Hostel Management - Change request</title>
+    <title>Hostel Management - Deallocate Batch</title>
     <meta name="keywords" content=""/>
     <meta name="description" content="">
     <meta name="author" content="ThemeREX">
@@ -10,7 +10,7 @@
     <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700'>
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,700,700italic' rel='stylesheet'
           type='text/css'>
-          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">a
     <link rel="stylesheet" type="text/css" href="http://alliance-html.themerex.net/assets/skin/default_skin/css/theme.css">
     <link rel="stylesheet" type="text/css" href="http://alliance-html.themerex.net/assets/allcp/forms/css/forms.css">
     <link rel="shortcut icon" href="http://alliance-html.themerex.net/assets/img/favicon.ico">
@@ -19,7 +19,6 @@
 <body class="forms-layouts">
 <div id="main">
     <header class="navbar navbar-fixed-top bg-dark">
-        
         <ul class="nav navbar-nav navbar-left">
                 <li class="breadcrumb-icon" style="background-color:rgb(255,0,0)">
                         <a href="/hostel">
@@ -29,168 +28,99 @@
                     <li class="breadcrumb-active">
                         <a href="/hostel" style="font-size: 20px">Hostel Management</a>
                     </li>
-                </ul>
-        
-            
-            
+                </ul>  
         </ul>
         <ul class="nav navbar-nav navbar-right">
             
             
             <li class="dropdown dropdown-fuse">
                 <a href="#" class="dropdown-toggle fw600" data-toggle="dropdown">
-                    <span class="hidden-xs"><name>{{ request.user.first_name }}</name> </span>
+                    <span class="hidden-xs"><name>{{ request.user.first_name }}</name> </span> 
                 </a>
-                <ul class="dropdown-menu list-group keep-dropdown w250" role="menu">
-                    <li class="dropdown-header clearfix"> 
+                <ul class="dropdown-menu list-group keep-dropdown w250" role="menu">   
+                    <li class="dropdown-header clearfix">
                             <a href="/hostel/logout/" class="btn btn-primary btn-sm btn-bordered">
                             <span class="fa fa-power-off pr5"></span> Logout </a>
                     </li>
-                   
-                    
                 </ul>
             </li>
         </ul>
     </header>
-    <!-- -------------- /Header  -------------- -->
-
-    <!-- -------------- Sidebar  -------------- -->
-  
-
-    <!-- -------------- Main Wrapper -------------- -->
-    <section id="content_wrapper" style="margin-left: 10px" >
-
-        <!-- -------------- Topbar -------------- -->
-        <header id="topbar" class="alt" style="
-    margin-top: 75px;
-">
+        <header id="topbar" class="alt" style="margin-top: 75px;">
             <div class="topbar-left">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-link">
                         <a href="/hostel">Home</a>
                     </li>
-                    <li class="breadcrumb-current-item">/ Change Room</li>
+                    <li class="breadcrumb-current-item">/ Deallocate Batch</li>
                 </ol>
             </div>
             
         </header>
-        <!-- -------------- /Topbar -------------- -->
-
-        <!-- -------------- Content -------------- -->
         <section id="content" class="table-layout animated fadeIn">
-
-           
-            <!-- -------------- Column Center -------------- -->
             <div class="chute chute-center">
                 <div class="">
-
                     <div class="tab-content mw900 center-block center-children">
-
-
-                        <!-- -------------- Contact Form -------------- -->
                         <div class="allcp-form theme-primary tab-pane active mw600"  id="contact" role="tabpanel">
                             <div class="panel">
                                 <div class="panel-heading">
-                                    <span class="panel-title">Change Room Request</span>
-                                    <span></br></br>    Note: You can put a request to change your current alloted room giving an appropriate reason for the request.
-
-</span>
-                                <!-- -------------- /Panel Heading -------------- -->
-
-                                <form id="change_req_form" method="post" action="/hostel/change_req/">
+                                    <span class="panel-title">Deallocate Batch</span>
+                                    <span></br></br>Note: You can deallocate rooms for an entire batch</span>
+                                    {% if messages %}
+                                        <ul class="messages">
+                                        {% for message in messages %}
+                                            <font color="red"><li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li></font>
+                                        {% endfor %}
+                                        </ul>
+                                    {% endif %}
+                                </div>
+                                <form id="deallocate_form" method="post" action="/hostel/deallocate/">
                                     {% csrf_token %}
                                     <div class="panel-body pn">
-                                        
-                                        
-                                        <!-- -------------- /section -------------- -->
-
                                         <div class="section">
-                                            <label for="comment" class="field prepend-icon">
-                          <textarea class="gui-textarea" name="reason"
-                                    placeholder="Reason for request"></textarea>
-                                                <label for="comment" class="field-icon">
-                                                    <i class="fa fa-question-circle"></i>
+                                            <label for="names" class="field prepend-icon">
+                                                <input type="integer" name="join_year" autocomplete="off" class="gui-input"
+                                                       placeholder="Joining year for the batch">
+                                                <label for="names" class="field-icon">
+                                                    <i class="fa fa-users"></i>
                                                 </label>
                                             </label>
                                         </div>
-                                        <!-- -------------- /section -------------- -->
-
                                         <div class="section">
-                                            
+                                            <div class="smart-widget sm-left sml-80">
+                                                
+                                            </div>
                                             <div class="section">
-                                            <div class="bs-component pull-left mt10">
-                                                <div class="checkbox-custom checkbox-primary mb10">
-                                                    <input type="checkbox" name="flag" checked="" id="agree">
-                                                    <label for="agree">Are you sure?</label>
+                                                <div class="bs-component pull-left mt10">
                                                 </div>
                                             </div>
-                                            
                                         </div>
-                                            <!-- -------------- /Block Widget -------------- -->
-                                        </div>
-                                        <!-- -------------- /section -------------- -->
-
-                                    </div>
-                                    <!-- -------------- /Form -------------- -->
                                     <div class="section text-right">
-                                        <button type="submit" class="btn btn-primary btn-bordered ph40">Submit</button>
+                                        <button type="submit" class="btn btn-primary btn-bordered ph40">Deallocate</button>
                                     </div>
                                 </form>
                             </div>
-                            <!-- -------------- /Panel -------------- -->
                         </div>
-                        <!-- -------------- /Contact Form -------------- -->
-
-                      
-                       
-
                     </div>
 
                 </div>
             </div>
-            <!-- -------------- /Column Center -------------- -->
-
         </section>
-        <!-- -------------- /Content -------------- -->
-
-    </section>
-
-    <!-- -------------- Sidebar Right -------------- -->
-    
-    <!-- -------------- /Sidebar Right -------------- -->
-
 </div>
-<!-- -------------- /Body Wrap  -------------- -->
-
 <style>
-    /* demo page styles */
     .allcp-form .panel.heading-border:before,
     .allcp-form .panel .heading-border:before {
         transition: all 0.7s ease;
     }
 </style>
-
-<!-- -------------- Scripts -------------- -->
-
-<!-- -------------- jQuery -------------- -->
 <script src="http://alliance-html.themerex.net/assets/js/jquery/jquery-1.11.3.min.js"></script>
 <script src="http://alliance-html.themerex.net/assets/js/jquery/jquery_ui/jquery-ui.min.js"></script>
-
-<!-- -------------- HighCharts Plugin -------------- -->
 <script src="http://alliance-html.themerex.net/assets/js/plugins/highcharts/highcharts.js"></script>
-
-<!-- -------------- MonthPicker JS -------------- -->
 <script src="http://alliance-html.themerex.net/assets/allcp/forms/js/jquery-ui-monthpicker.min.js"></script>
-
-<!-- -------------- Theme Scripts ---------------->
 <script src="http://alliance-html.themerex.net/assets/js/utility/utility.js"></script>
 <script src="http://alliance-html.themerex.net/assets/js/demo/demo.js"></script>
 <script src="http://alliance-html.themerex.net/assets/js/main.js"></script>
 <script src="http://alliance-html.themerex.net/assets/js/demo/widgets_sidebar.js"></script>
-{#<script src="http://alliance-html.themerex.net/assets/js/pages/forms-layouts.js"></script>#}
-
-<!-- -------------- /Scripts -------------- -->
-
 </body>
 
 </html>

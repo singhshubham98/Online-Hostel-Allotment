@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Hostel Management - Registration </title>
+    <meta name="keywords" content=""/>
+    <meta name="description" content="">
+    <meta name="author" content="ThemeREX">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700'>
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,700,700italic' rel='stylesheet'
+          type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="http://alliance-html.themerex.net/assets/skin/default_skin/css/theme.css">
+    <link rel="stylesheet" type="text/css" href="http://alliance-html.themerex.net/assets/allcp/forms/css/forms.css">
+    <link rel="shortcut icon" href="http://alliance-html.themerex.net/assets/img/favicon.ico">
+
+</head>
+
+<body class="forms-layouts">
+<div id="main">
+    <header class="navbar navbar-fixed-top bg-dark">
+        
+        <ul class="nav navbar-nav navbar-left">
+                <li class="breadcrumb-icon" style="background-color:rgb(255,0,0)">
+                        <a href="/hostel">
+                            <span class="fa fa-home"></span>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-active">
+                        <a href="/hostel" style="font-size: 20px">Hostel Management</a>
+                    </li>
+                </ul>
+        
+            
+            
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+             <li class="dropdown dropdown-fuse">
+                <a href="#" class="dropdown-toggle fw600" data-toggle="dropdown">
+                    <span class="hidden-xs"><name>{{ request.user.first_name }}</name> </span>
+                   
+                </a>
+                <ul class="dropdown-menu list-group keep-dropdown w250" role="menu">
+   
+                            <li class="dropdown-header clearfix">
+                                <a href="/hostel/logout/" class="btn btn-primary btn-sm btn-bordered">
+                                    <span class="fa fa-power-off pr5"></span> Logout
+                                </a>
+                            </li> 
+                </ul>
+            </li>
+        </ul>
+    </header>
+    <header id="topbar" class="alt" style="margin-top: 75px;">
+        <div class="topbar-left">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-link">
+                    <a href="/hostel">Home</a>
+                </li>
+                <li class="breadcrumb-current-item">/ Registration </li>
+            </ol>
+        </div>
+        
+    </header>
+    <section id="content" class="table-layout animated fadeIn">
+        <div class="chute chute-center">
+                <div class="tab-content mw900 center-block center-children">
+                    <div class="allcp-form theme-primary tab-pane active mw600"  id="contact" role="tabpanel">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <span class="panel-title">Registration</span>
+                                <span></br></br>Note: You can allocate a room to a perticular student by entering his/her roll no. and a valid room no.</span>
+                            </div>
+                            <form method="post" action="/hostel/register/">
+                                {% csrf_token %}
+
+                                <div class="panel-body pn">
+                                    <div class="section">
+                                        <label for="{{ user_form.username.id_for_label }}" class="field prepend-icon">
+                                            <input type="text" id={{ user_form.username.id_for_label }} name="roll_no" class="gui-input"
+                                                    placeholder="Roll no.">
+                                            <label for="{{ user_form.username.id_for_label }}" class="field-icon">
+                                                <i class="fa fa-edit"></i>
+                                            </label>
+                                        </label>
+                                    </div>
+                                    <div class="section">
+                                        <label for="{{ user_form.first_name.id_for_label }}" class="field prepend-icon">
+                                            <input type="text" id="{{user_form.first_name.id_for_label }}" name="first_name" class="gui-input"
+                                                    placeholder="First Name">
+                                            <label for="{{ user_form.first_name.id_for_label }}" class="field-icon">
+                                                <i class="fa fa-user"></i>
+                                            </label>
+                                        </label>
+                                    </div>
+                                    <div class="section">
+                                        <label for="{{ user_form.last_name.id_for_label }}" class="field prepend-icon">
+                                            <input type="text" id="{{ user_form.last_name.id_for_label }}" name="last_name" class="gui-input"
+                                                    placeholder="Last Name">
+                                            <label for="{{ user_form.last_name.id_for_label }}" class="field-icon">
+                                                <i class="fa fa-user"></i>
+                                            </label>
+                                        </label>
+                                    </div>
+                                    <div class="section">
+                                        <label for="{{ user_form.email.id_for_label }}" class="field prepend-icon">
+                                            <input type="email" id="{{ user_form.email.id_for_label }}" name="email" class="gui-input"
+                                                    placeholder="Email">
+                                            <label for="{{ user_form.email.id_for_label }}" class="field-icon">
+                                                <i class="fa fa-envelope"></i>
+                                            </label>
+                                        </label>
+                                    </div>
+                                    <div class="section">
+                                        <label for="{{ user_form.password.id_for_label }}" class="field prepend-icon">
+                                            <input type="password" id="{{ user_form.password.id_for_label }}" name="password" class="gui-input"
+                                                    placeholder="Password">
+                                            <label for="{{ user_form.password.id_for_label }}" class="field-icon">
+                                                <i class="fa fa-lock"></i>
+                                            </label>
+                                        </label>
+                                    </div>
+                                    <div class="section">
+                                        <label for="{{student_form.gender.id_for_label}}" class="field prepend-icon">
+                                            <input type="text" id="{{ student_form.gender.id_for_label }}" name="gender" class="gui-input"
+                                                    placeholder="Gender">
+                                            <label for="{{student_form.gender.id_for_label}}" class="field-icon">
+                                                <i class="fa fa-male"></i>
+                                            </label>
+                                        </label>
+                                    </div>
+                                    <div class="section">
+                                        <label for="{{student_form.age.id_for_label}}" class="field prepend-icon">
+                                            <input type="number" id="{{ student_form.age.id_for_label }}" name="age" class="gui-input"
+                                                    placeholder="Age">
+                                            <label for="{{student_form.age.id_for_label}}" class="field-icon">
+                                                <i class="fa fa-child"></i>
+                                            </label>
+                                        </label>
+                                    </div>
+                                    <div class="section">
+                                        <label for="{{student_form.father_name.id_for_label}}" class="field prepend-icon">
+                                            <input type="text" name="father_name" class="gui-input"
+                                                    placeholder="Father Name">
+                                            <label for="{{student_form.father_name.id_for_label}}" class="field-icon">
+                                                <i class="fa fa-user"></i>
+                                            </label>
+                                        </label>
+                                    </div>
+                                    <div class="section">
+                                        <label for="{{student_form.date_of_birth.id_for_label}}" class="field prepend-icon">
+                                                <input type="text" id="{{ student_form.date_of_birth.id_for_label }}" name="date_of_birth" class="gui-input"
+                                                    placeholder="YYYY-MM-DD" required 
+                                                    pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" />
+                                            <label for="{{student_form.date_of_birth.id_for_label}}" class="field-icon">
+                                                <i class="fa fa-calendar"></i>
+                                            </label>
+                                        </label>
+                                    </div>
+                                    <div class="section">
+                                        <label for="{{student_form.fee_receipt.id_for_label}}" class="field prepend-icon">
+                                            <input type="text" id="{{ student_form.fee_receipt.id_for_label }}" name="fee_receipt" class="gui-input"
+                                                    placeholder="Fee Receipt">
+                                            <label for="{{student_form.fee_receipt.id_for_label}}" class="field-icon">
+                                                <i class="fa fa-credit-card"></i>
+                                            </label>
+                                        </label>
+                                    </div>
+                                    <div class="section">
+                                        <label for="{{student_form.per_address.id_for_label}}" class="field prepend-icon">
+                                            <input type="text" id="{{ student_form.address.id_for_label }}"  name="address" class="gui-input"
+                                                    placeholder="Address">
+                                            <label for="{{student_form.per_address.id_for_label}}" class="field-icon">
+                                                <i class="fa fa-home"></i>
+                                            </label>
+                                        </label>
+                                    </div>
+                                    <div class="section">
+                                        <label for="{{student_form.join_year.id_for_label}}" class="field prepend-icon">
+                                            <input type="number" id="{{ student_form.batch.id_for_label }}"  name="batch" class="gui-input"
+                                                    placeholder="Batch">
+                                            <label for="{{student_form.join_year.id_for_label}}" class="field-icon">
+                                                <i class="fa fa-institution"></i>
+                                            </label>
+                                        </label>
+                                    </div>
+                                    
+                                </div>
+                                {{ diff_form.as_p }}
+                                <div class="section text-right">
+                                    <button type="submit" class="btn btn-primary btn-bordered ph40">Register</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </section>
+</div>
+<style>
+    .allcp-form .panel.heading-border:before,
+    .allcp-form .panel .heading-border:before {
+        transition: all 0.7s ease;
+    }
+</style>
+
+<script src="http://alliance-html.themerex.net/assets/js/jquery/jquery-1.11.3.min.js"></script>
+<script src="http://alliance-html.themerex.net/assets/js/jquery/jquery_ui/jquery-ui.min.js"></script>
+
+<!-- -------------- HighCharts Plugin -------------- -->
+<script src="http://alliance-html.themerex.net/assets/js/plugins/highcharts/highcharts.js"></script>
+
+<!-- -------------- MonthPicker JS -------------- -->
+<script src="http://alliance-html.themerex.net/assets/allcp/forms/js/jquery-ui-monthpicker.min.js"></script>
+
+<!-- -------------- Theme Scripts ---------------->
+<script src="http://alliance-html.themerex.net/assets/js/utility/utility.js"></script>
+<script src="http://alliance-html.themerex.net/assets/js/demo/demo.js"></script>
+<script src="http://alliance-html.themerex.net/assets/js/main.js"></script>
+<script src="http://alliance-html.themerex.net/assets/js/demo/widgets_sidebar.js"></script>
+{#<script src="http://alliance-html.themerex.net/assets/js/pages/forms-layouts.js"></script>#}
+
+<!-- -------------- /Scripts -------------- -->
+
+</body>
+
+</html>
