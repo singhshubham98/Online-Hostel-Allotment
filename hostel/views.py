@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 from django.views import generic
 from django.contrib.auth.decorators import login_required
 from .forms import UserForm, DiffForm, StudentForm, RoomForm
-from .models import Diff, Student, Room, Change, Swap
+from .models import Diff, Student, Room, Change, Swap, Swaphelper
 from django.contrib.auth.models import User
 from django.template import RequestContext
 import csv, os
@@ -20,51 +20,52 @@ def index(request):
     return render(request, 'hostel/index.html', {'diff' : diff, })
 
 # --------- RegisterPage view --------
-
+@login_required
 def register(request):
     # Set to False initially. Code changes value to True when registration succeeds.
     registered = False
 
     if request.method == 'POST':
-        user_from    = UserForm(data = request.POST)
-        diff_from    = DiffForm(data = request.POST)
-        student_from = StudentForm(data = request.POST)
-
+        user_form    = UserForm(data = request.POST)
+        diff_form    = DiffForm(data = request.POST)
+        student_form = StudentForm(data = request.POST)
         
-        if user_from.is_valid() and diff_from.is_valid() and student_from.is_valid():
-            user = user_from.save()
-            # user.username(label_tag='roll_no')
-            # using set_password method, hash the password
-            user.set_password(user.password)
-            user.save()
+        
+        if user_form.is_valid() and diff_form.is_valid() and student_form.is_valid():
+            try:
+                user = user_form.save()
+                print user
+                # user.username(label_tag='roll_no')
+                # using set_password method, hash the password
+                user.set_password(user.password)
+                user.save()
 
-            # Since we need to set the user attribute ourselves, we set commit=False.
-            # This delays saving the model until we're ready to avoid integrity problems.
-            diff = diff_from.save(commit = False)
-            diff.user = user
-            diff.save()
-
-            student  = student_from.save(commit = False)
-            student.roll_no = user
-            student.save()
-
-            registered = True
-            return HttpResponseRedirect('/hostel/')
-
-        else:
-            print user_from.errors, student_from.errors, diff_from.errors
+                # Since we need to set the user attribute ourselves, we set commit=False.
+                # This delays saving the model until we're ready to avoid integrity problems.
+                diff = diff_form.save(commit = False)
+                diff.user = user
+                diff.save()
+                print diff
+                student  = student_form.save(commit = False)
+                student.roll_no = user
+                student.save()
+                print student
+                registered = True
+                return HttpResponseRedirect('/hostel/')
+            except:
+                pass
 
     # Not a HTTP POST, so we render our form using two ModelForm instances.
     # These forms will be blank, ready for user input.
     else:
-        user_from = UserForm()
-        student_from = StudentForm()
-        diff_from = DiffForm()
+        user_form = UserForm()
+        student_form = StudentForm()
+        diff_form = DiffForm()
 
     return render(request, 'hostel/register.html', {
-        'user_form' : user_from,
-        'student_form' : student_from,
-        'diff_form' : diff_from,
+        'user_form' : user_form,
+        'student_form' : student_form,
+        'diff_form' : diff_form,
         'registered': registered,
     })
 
@@ -93,13 +94,13 @@ def user_login(request):
     else:
         return render(request,'hostel/login.html', {})
 
-# ----- Logout-----
+# <!----- Logout----->
 @login_required
 def logout1(request):
     logout(request)
     return redirect('/hostel/login/')
 
-# -------Allocate Room ------
+# <!-------Allocate Room ------>
 @login_required
 def allocate(request):
 
@@ -147,7 +148,6 @@ def student_details(request):
 def change_request(request):
 
     if request.method == 'POST':
-        
         student = Student.objects.get(roll_no = request.user)
         reason  = request.POST['reason']
         flag    = request.POST['flag']
@@ -210,12 +210,15 @@ def swap_request(request):
             messages.add_message(request, messages.ERROR, 'Check the roll number again!')
             return render(request, 'hostel/swap_request.html', {})
 
-            student1 = Student.objects.get(roll_no = request.user)
-            if flag and student2.room is not None:
+        student1 = Student.objects.get(roll_no = request.user)
+        if student2.room is not None:
+            if flag:
                 Swap.objects.create(student1 = student1, student2 = student2, reason = reason)
-                return HttpResponseRedirect('/hostel/success')
             else:
                 return HttpResponseRedirect('/hostel/')
+            return HttpResponseRedirect('/hostel/success')
+        else:
+            return HttpResponseRedirect('/hostel/')
     else:
         return render(request, 'hostel/swap_request.html', {})
 
@@ -228,9 +231,9 @@ def swap(request):
         roll_no2 = request.POST['roll_no2']
 
         try:
-            user1 = User.objects.get(user = roll_no1)
+            user1 = User.objects.get(username = roll_no1)
             student1 = Student.objects.get(roll_no = user1)
-            user2 = User.objects.get(user = roll_no2)
+            user2 = User.objects.get(username = roll_no2)
             student2 = Student.objects.get(roll_no = user2)
 
         except ObjectDoesNotExist:
@@ -245,7 +248,7 @@ def swap(request):
             student2.room = room1
             student1.save()
             student2.save()
-            html = '<html><body style="background-color:rgb(123,225,236); text-align:center; margin-top:100px;"><h2>Sorry, The Room is full</h2> </body></html>'
+            html = '<html><body style="background-color:rgb(123,225,236); text-align:center; margin-top:100px;"><h2>Room Swapped Successfully</h2> </body></html>'
             return HttpResponse(html)
         
         else:
@@ -274,15 +277,68 @@ def swap_ack(request):
         return render(request, 'hostel/swap_ack.html', {'request': req, 'user': user})
 
 
+@login_required
+def deallocate(request):
+    if request.method == 'POST':
+        join_year = request.POST['join_year']
+
+        students = Student.objects.filter(join_year = join_year)
+        length = len(students)
+        if length == 0:
+            messages.add_message(request, messages.ERROR, 'No Such Batch')
+            return render(request, 'hostel/deallocate.html', {})
+        
+        else:
+            for i in range(length):
+                if students[i].room is not None:
+                    old_room = Room.objects.get(room_no = students[i].room.room_no)
+                    old_room.vacancy = old_room.capacity
+                    print students[i], old_room
+                    old_room.save()
+                    students[i].room = None
+                    students[i].save()
+                    print students[i],old_room
+                else:
+                    students[i].save()
+            return HttpResponseRedirect('/hostel/')
+    else:
+        return render(request, 'hostel/deallocate.html', {})
+
+@login_required
+def show_request(request):
+    try:
+        swap_req = Swap.objects.all()
+    except Swap.DoesNotExist:
+        swap_req = None
+
+    try:
+        changer = []
+        change_req = Change.objects.all()
+        for i in change_req:
+            user = User.objects.get(username=i.student.roll_no)
+            changer.append([user, i])
+            #print (user, i)
+
+    except Change.DoesNotExist:
+        change_req = None
+    return render(request, 'hostel/show_request.html', {'swap_req': swap_req, 'change_req': changer})
+
+@login_required
+def vacant_room(request):
+    rooms = Room.objects.exclude(vacancy = 0)
+    return render(request, 'hostel/vacant_room.html', {'rooms': rooms,})
+
+@login_required
+def show_students(request):
+    changer = []
+    students = Student.objects.all()
+    for i in students:
+        user = User.objects.get(username = i.roll_no)
+        changer.append([user, i])
+    
+    return render(request, 'hostel/show_students.html', {'students': changer,})
 
 
 @login_required
 def success(request):
     return render(request, 'hostel/success.html', {})
-
-
-
-       
-        
-
-
