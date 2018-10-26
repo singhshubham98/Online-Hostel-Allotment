@@ -45,60 +45,58 @@
             </li>
         </ul>
     </header>
-    <section id="content_wrapper" style="margin-left: 10px">
-        <header id="topbar" class="alt" style="margin-top: 75px;">
-            <div class="topbar-left">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-link">
-                        <a href="/hostel">Home</a>
-                    </li>
-                    <li class="breadcrumb-current-item">/ Swap room request</li>
-                </ol>
-            </div>
-            
-        </header>
-        <section id="content" class="table-layout animated fadeIn">
+    <header id="topbar" class="alt" style="margin-top: 75px;">
+        <div class="topbar-left">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-link">
+                    <a href="/hostel">Home</a>
+                </li>
+                <li class="breadcrumb-current-item">/ Swap room request</li>
+            </ol>
+        </div>
+        
+    </header>
+    <section id="content" class="table-layout animated fadeIn">
 
-           
-            <!-- -------------- Column Center -------------- -->
-            <div class="chute chute-center">
-                <div class="">
+        
+        <!-- -------------- Column Center -------------- -->
+        <div class="chute chute-center">
+            <div class="">
 
-                    <div class="tab-content mw900 center-block center-children">
+                <div class="tab-content mw900 center-block center-children">
 
-                        {% if not request == None %}
-                        <div class="allcp-form theme-primary tab-pane active mw600"  id="contact" role="tabpanel">
-                            <div class="panel">
-                                <div class="panel-heading">
-                                    <span class="panel-title">Swap Room Acknowledgement</span>
+                    {% if not request == None %}
+                    <div class="allcp-form theme-primary tab-pane active mw600"  id="contact" role="tabpanel">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <span class="panel-title">Swap Room Acknowledgement</span>
 
-                                    <span></br></br>   <b> <i> {{ request.student1.roll_no.username }} </i></b>wants to swap room with you.</span>
-                                     <span></br></br>  REASON :  <b> <i> {{ request.reason }} </i></b></span>
-                                <form id="swap_req_form" method="post" action="/hostel/swap_ack/">
-                                    {% csrf_token %}
-                                    <div class="section text-right">
-                                         <button type="submit" value="accept" name="_accept" class="btn btn-primary btn-bordered ph40">Accept</button>
-                                        <button type="submit" value="decline" name="_decline" class="btn btn-primary btn-bordered ph40">Decline</button>
-                                    </div>
-                                </form>
+                                <span></br></br>   <b> <i> {{ request.student1.roll_no.username }} </i></b>wants to swap room with you.</span>
+                                    <span></br></br>  REASON :  <b> <i> {{ request.reason }} </i></b></span>
+                            <form id="swap_req_form" method="post" action="/hostel/swap_ack/">
+                                {% csrf_token %}
+                                <div class="section text-right">
+                                        <button type="submit" value="accept" name="_accept" class="btn btn-primary btn-bordered ph40">Accept</button>
+                                    <button type="submit" value="decline" name="_decline" class="btn btn-primary btn-bordered ph40">Decline</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                    {% else %}
+                    <div class="allcp-form theme-primary tab-pane active mw600"  id="contact" role="tabpanel">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <span class="panel-title">Swap Room Acknowledgement</span>
+                                                                    {% csrf_token %}
+                                <span></br></br>   There are no swap requests for you!</span>
                             </div>
                         </div>
                     </div>
-                        {% else %}
-                        <div class="allcp-form theme-primary tab-pane active mw600"  id="contact" role="tabpanel">
-                            <div class="panel">
-                                <div class="panel-heading">
-                                    <span class="panel-title">Swap Room Acknowledgement</span>
-                                                                        {% csrf_token %}
-                                    <span></br></br>   There are no swap requests for you!</span>
-                                </div>
-                            </div>
-                        </div>
-        {% endif %}
-                </div>
+                    {% endif %}
             </div>
-        </section>
-</section>
+        </div>
+    </section>
 </div>
 <style>
     .allcp-form .panel.heading-border:before,
