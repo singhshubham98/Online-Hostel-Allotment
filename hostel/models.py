@@ -25,10 +25,9 @@ class Student(models.Model):
     gender        = models.CharField(max_length = 1)
     father_name   =  models.CharField(max_length = 200, null=True)
     date_of_birth =  models.DateField(null =True, blank = True)
-    fee_receipt   =  models.FileField(blank = True, null =True)
+    fee_receipt   =  models.CharField(max_length = 100,null =True)
     per_address   =  models.TextField(null =True)
     roll_no       = models.CharField(max_length = 10, primary_key =True,unique = True )
-
     def __str__(self):
         return str(self.roll_no)
 
@@ -36,8 +35,13 @@ class Change(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     reason  = models.CharField(max_length = 300)
 
+
+class Swaphelper(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+
 class Swap(models.Model):
     student1 = models.ForeignKey(Student, on_delete=models.CASCADE)
-    student2 = models.CharField(max_length = 100)
+    student2 = models.CharField(max_length = 300)
     reason   = models.CharField(max_length = 300)
     accept   = models.BooleanField(default = False)
+
