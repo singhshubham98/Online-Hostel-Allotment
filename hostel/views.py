@@ -11,6 +11,7 @@ from django.template import RequestContext
 import csv, os
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.files.storage import FileSystemStorage
 
 # Diff class for authentication if login user is not hostel admin or Student then
 # login page will display error 
@@ -26,15 +27,14 @@ def register(request):
     registered = False
 
     if request.method == 'POST':
-        user_form    = UserForm(data = request.POST)
-        diff_form    = DiffForm(data = request.POST)
-        student_form = StudentForm(data = request.POST)
+        user_form    = UserForm(request.POST)
+        diff_form    = DiffForm(request.POST)
+        student_form = StudentForm(request.POST, request.FILES)
         
         
         if user_form.is_valid() and diff_form.is_valid() and student_form.is_valid():
             try:
                 user = user_form.save()
-                print user
                 # user.username(label_tag='roll_no')
                 # using set_password method, hash the password
                 user.set_password(user.password)
@@ -45,11 +45,9 @@ def register(request):
                 diff = diff_form.save(commit = False)
                 diff.user = user
                 diff.save()
-                print diff
                 student  = student_form.save(commit = False)
                 student.roll_no = user
                 student.save()
-                print student
                 registered = True
                 return HttpResponseRedirect('/hostel/')
             except:
@@ -62,7 +60,7 @@ def register(request):
         student_form = StudentForm()
         diff_form = DiffForm()
 
-    return render(request, 'hostel/register.html', {
+    return render(request,'hostel/register.html', {
         'user_form' : user_form,
         'student_form' : student_form,
         'diff_form' : diff_form,

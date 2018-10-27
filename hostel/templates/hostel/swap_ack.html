@@ -57,9 +57,6 @@
         
     </header>
     <section id="content" class="table-layout animated fadeIn">
-
-        
-        <!-- -------------- Column Center -------------- -->
         <div class="chute chute-center">
             <div class="">
 
@@ -71,7 +68,7 @@
                             <div class="panel-heading">
                                 <span class="panel-title">Swap Room Acknowledgement</span>
 
-                                <span></br></br>   <b> <i> {{ request.student1.roll_no.username }} </i></b>wants to swap room with you.</span>
+                                <span></br></br>   <b> <i> {{ request.student1 }} </i></b>wants to swap room with you.</span>
                                     <span></br></br>  REASON :  <b> <i> {{ request.reason }} </i></b></span>
                             <form id="swap_req_form" method="post" action="/hostel/swap_ack/">
                                 {% csrf_token %}

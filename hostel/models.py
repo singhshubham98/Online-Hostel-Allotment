@@ -22,11 +22,18 @@ class Room(models.Model):
 class Student(models.Model):
     join_year     = models.IntegerField(default=2016)
     room          = models.ForeignKey(Room, on_delete=models.CASCADE, null=True)
-    gender        = models.CharField(max_length = 1)
+    GENDER_CHOICES=[
+        ('male', 'Male'),
+        ('female', 'Female')
+    ]
+    gender        = models.CharField(choices=GENDER_CHOICES, default='male',max_length = 6)
     father_name   =  models.CharField(max_length = 200, null=True)
     date_of_birth =  models.DateField(null =True, blank = True)
-    fee_receipt   =  models.CharField(max_length = 100,null =True)
-    per_address   =  models.TextField(null =True)
+    fee_receipt   =  models.FileField(upload_to='receipt/', null=True)
+    address       =  models.CharField(max_length = 100,null =True)
+    city          =  models.CharField(max_length = 100,null =True)
+    state         =  models.CharField(max_length = 100,null =True)
+    pincode       = models.IntegerField(default=382009)
     roll_no       = models.CharField(max_length = 10, primary_key =True,unique = True )
     def __str__(self):
         return str(self.roll_no)
@@ -40,8 +47,8 @@ class Swaphelper(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
 
 class Swap(models.Model):
-    student1 = models.ForeignKey(Student, on_delete=models.CASCADE)
-    student2 = models.CharField(max_length = 300)
+    student1 = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='student1')
+    student2 = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='student2')
     reason   = models.CharField(max_length = 300)
     accept   = models.BooleanField(default = False)
 
