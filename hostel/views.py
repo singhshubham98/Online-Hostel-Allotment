@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 from django.views import generic
 from django.contrib.auth.decorators import login_required
 from .forms import UserForm, DiffForm, StudentForm, RoomForm
-from .models import Diff, Student, Room, Change, Swap, Swaphelper
+from .models import Diff, Student, Room, Change, Swap
 from django.contrib.auth.models import User
 from django.template import RequestContext
 import csv, os

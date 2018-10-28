@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +16,10 @@
     <link rel="stylesheet" type="text/css" href="http://alliance-html.themerex.net/assets/skin/default_skin/css/theme.css">
     <link rel="stylesheet" type="text/css" href="http://alliance-html.themerex.net/assets/allcp/forms/css/forms.css">
     <link rel="shortcut icon" href="http://alliance-html.themerex.net/assets/img/favicon.ico">
+
+    
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
+
 </head>
 
 <body class="forms-layouts">
@@ -78,7 +83,7 @@
                                 <div class="panel-heading">
                                     <span class="panel-title"> View Details</span>
                                 </div>
-                                <div class="panel-body">
+                                <div class="panel-body"  >
                                     <p>Select to view the complete details of your room which includes your room number, maximum capacity of the room and your roommates </br></p>
                                     <p></br></p>
                                         <div  class="btn btn-default btn-lg mb5"><a href = "student_details/" >View</a></div>    

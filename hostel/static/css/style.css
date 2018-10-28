@@ -64,3 +64,8 @@ color: white;
 .links a{
 margin-left: 4px;
 }
+
+.fixed-panel {
+    min-height: 10;
+    max-height: 100;
+}

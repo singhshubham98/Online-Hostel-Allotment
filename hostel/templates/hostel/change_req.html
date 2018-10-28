@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="http://alliance-html.themerex.net/assets/img/favicon.ico">
 </head>
 
-<body class="forms-layouts">
+<body class="forms-layouts"  style="overflow-y: hidden;">
 <div id="main">
     <header class="navbar navbar-fixed-top bg-dark">
         
@@ -30,13 +30,8 @@
                         <a href="/hostel" style="font-size: 20px">Hostel Management</a>
                     </li>
                 </ul>
-        
-            
-            
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            
-            
             <li class="dropdown dropdown-fuse">
                 <a href="#" class="dropdown-toggle fw600" data-toggle="dropdown">
                     <span class="hidden-xs"><name>{{ request.user.first_name }}</name> </span>
@@ -52,12 +47,6 @@
             </li>
         </ul>
     </header>
-    <!-- -------------- /Header  -------------- -->
-
-    <!-- -------------- Sidebar  -------------- -->
-  
-
-    <!-- -------------- Main Wrapper -------------- -->
         <header id="topbar" class="alt" style="margin-top: 75px;">
             <div class="topbar-left">
                 <ol class="breadcrumb">
@@ -68,20 +57,11 @@
                 </ol>
             </div>
             </header>
-        <!-- -------------- /Topbar -------------- -->
-
-        <!-- -------------- Content -------------- -->
         <section id="content" class="table-layout animated fadeIn">
-
-           
-            <!-- -------------- Column Center -------------- -->
             <div class="chute chute-center">
                 <div class="">
 
                     <div class="tab-content mw900 center-block center-children">
-
-
-                        <!-- -------------- Contact Form -------------- -->
                         <div class="allcp-form theme-primary tab-pane active mw600"  id="contact" role="tabpanel">
                             <div class="panel">
                                 <div class="panel-heading">
@@ -89,14 +69,10 @@
                                     <span></br></br>    Note: You can put a request to change your current alloted room giving an appropriate reason for the request.
 
                                     </span>
-                                <!-- -------------- /Panel Heading -------------- -->
 
                                 <form id="change_req_form" method="post" action="/hostel/change_req/">
                                     {% csrf_token %}
                                     <div class="panel-body pn">
-                                        
-                                        
-                                        <!-- -------------- /section -------------- -->
 
                                         <div class="section">
                                             <label for="comment" class="field prepend-icon">
@@ -107,7 +83,6 @@
                                                 </label>
                                             </label>
                                         </div>
-                                        <!-- -------------- /section -------------- -->
 
                                         <div class="section">
                                             
@@ -120,18 +95,14 @@
                                             </div>
                                             
                                         </div>
-                                            <!-- -------------- /Block Widget -------------- -->
                                         </div>
-                                        <!-- -------------- /section -------------- -->
 
                                     </div>
-                                    <!-- -------------- /Form -------------- -->
                                     <div class="section text-right">
                                         <button type="submit" class="btn btn-primary btn-bordered ph40">Submit</button>
                                     </div>
                                 </form>
                             </div>
-                            <!-- -------------- /Panel -------------- -->
                         </div>
                     </div>
 
@@ -139,38 +110,22 @@
             </div>
 
         </section>
-
 </div>
-<!-- -------------- /Body Wrap  -------------- -->
 
 <style>
-    /* demo page styles */
     .allcp-form .panel.heading-border:before,
     .allcp-form .panel .heading-border:before {
         transition: all 0.7s ease;
     }
 </style>
-
-<!-- -------------- Scripts -------------- -->
-
-<!-- -------------- jQuery -------------- -->
 <script src="http://alliance-html.themerex.net/assets/js/jquery/jquery-1.11.3.min.js"></script>
 <script src="http://alliance-html.themerex.net/assets/js/jquery/jquery_ui/jquery-ui.min.js"></script>
-
-<!-- -------------- HighCharts Plugin -------------- -->
 <script src="http://alliance-html.themerex.net/assets/js/plugins/highcharts/highcharts.js"></script>
-
-<!-- -------------- MonthPicker JS -------------- -->
 <script src="http://alliance-html.themerex.net/assets/allcp/forms/js/jquery-ui-monthpicker.min.js"></script>
-
-<!-- -------------- Theme Scripts ---------------->
 <script src="http://alliance-html.themerex.net/assets/js/utility/utility.js"></script>
 <script src="http://alliance-html.themerex.net/assets/js/demo/demo.js"></script>
 <script src="http://alliance-html.themerex.net/assets/js/main.js"></script>
 <script src="http://alliance-html.themerex.net/assets/js/demo/widgets_sidebar.js"></script>
-{#<script src="http://alliance-html.themerex.net/assets/js/pages/forms-layouts.js"></script>#}
-
-<!-- -------------- /Scripts -------------- -->
 
 </body>
 

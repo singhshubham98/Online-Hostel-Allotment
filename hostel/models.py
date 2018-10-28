@@ -42,10 +42,6 @@ class Change(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     reason  = models.CharField(max_length = 300)
 
-
-class Swaphelper(models.Model):
-    student = models.ForeignKey(Student, on_delete=models.CASCADE)
-
 class Swap(models.Model):
     student1 = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='student1')
     student2 = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='student2')
