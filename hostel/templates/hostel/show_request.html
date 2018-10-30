@@ -23,12 +23,12 @@
         
         <ul class="nav navbar-nav navbar-left">
                 <li class="breadcrumb-icon" style="background-color:rgb(255,0,0)">
-                        <a href="/hostel">
+                        <a href="/">
                             <span class="fa fa-home"></span>
                         </a>
                     </li>
                     <li class="breadcrumb-active">
-                        <a href="/hostel" style="font-size: 20px">Hostel Management</a>
+                        <a href="/" style="font-size: 20px">Hostel Management</a>
                     </li>
                 </ul>
         </ul>
@@ -41,7 +41,7 @@
                 <ul class="dropdown-menu list-group keep-dropdown w250" role="menu">
                     
                     <li class="dropdown-header clearfix">
-                        <a href="/hostel/logout/" class="btn btn-primary btn-sm btn-bordered">
+                        <a href="/logout/" class="btn btn-primary btn-sm btn-bordered">
                             <span class="fa fa-power-off pr5"></span> Logout </a>
                     </li>          
                 </ul>
@@ -52,7 +52,7 @@
             <div class="topbar-left">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-link">
-                        <a href="/hostel">Home</a>
+                        <a href="/">Home</a>
                     </li>
                     <li class="breadcrumb-current-item">/ All Requests</li>
                 </ol>
@@ -60,7 +60,7 @@
             
         </header>
                
-{% if not change_req == None %}
+            {% if not change_req == None %}
                 <div class="panel" style="padding: 25px">
                     <div class="panel-heading">
                         <span class="panel-title">Room Change Requests</span>   

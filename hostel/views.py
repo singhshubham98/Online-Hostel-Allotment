@@ -49,7 +49,7 @@ def register(request):
                 student.roll_no = user
                 student.save()
                 registered = True
-                return HttpResponseRedirect('/hostel/')
+                return HttpResponseRedirect('/')
             except:
                 pass
 
@@ -82,13 +82,13 @@ def user_login(request):
                 # We'll send the user back to the homepage.
                 login(request, user)
 
-                return HttpResponseRedirect('/hostel/')
+                return HttpResponseRedirect('/')
             else:
                 return HttpResponse('Your Account is disabled')
         else:
-            print "Invalid login details: {0}, {1}".format(username, password)
+            print ("Invalid login details: {0}, {1}".format(username, password))
             messages.add_message(request, messages.ERROR, 'Invalid Password or Username. Try again!')
-            return HttpResponseRedirect("/hostel/login")
+            return HttpResponseRedirect("/login")
     else:
         return render(request,'hostel/login.html', {})
 
@@ -96,7 +96,7 @@ def user_login(request):
 @login_required
 def logout1(request):
     logout(request)
-    return redirect('/hostel/login/')
+    return redirect('/login/')
 
 # <!-------Allocate Room ------>
 @login_required
@@ -123,12 +123,12 @@ def allocate(request):
                 room_new.vacancy -= 1
                 student.save()
                 room_new.save()
-                return HttpResponseRedirect('/hostel/')
+                return HttpResponseRedirect('/')
             else:
                 html = '<html><body style="background-color:rgb(123,225,236); text-align:center; margin-top:100px;"><h2>Sorry, The Room is full</h2> </body></html>'
                 return HttpResponse(html)
         else:
-            return HttpResponseRedirect('/hostel/')
+            return HttpResponseRedirect('/')
     
     else:
         return render(request, 'hostel/staff_allocate_room.html', {})
@@ -153,9 +153,9 @@ def change_request(request):
         if flag:
             request = Change.objects.create(student = student, reason = reason)
         else:
-            return HttpResponseRedirect('/hostel/')
+            return HttpResponseRedirect('/')
         
-        return HttpResponseRedirect('/hostel/success')
+        return HttpResponseRedirect('/success')
     else:
         return render(request, 'hostel/change_req.html', {})
         
@@ -184,12 +184,12 @@ def change(request):
                 old_room.save()
                 student.save()
                 room_new.save()
-                return HttpResponseRedirect('/hostel/')
+                return HttpResponseRedirect('/')
             else:
                 html = '<html><body style="background-color:rgb(123,225,236); text-align:center; margin-top:100px;"><h2>Sorry, The Room is full</h2> </body></html>'
                 return HttpResponse(html)
         else:
-            return HttpResponseRedirect('/hostel/')
+            return HttpResponseRedirect('/')
     else:
         return render(request, 'hostel/staff_change_room.html', {})
 
@@ -213,10 +213,10 @@ def swap_request(request):
             if flag:
                 Swap.objects.create(student1 = student1, student2 = student2, reason = reason)
             else:
-                return HttpResponseRedirect('/hostel/')
-            return HttpResponseRedirect('/hostel/success')
+                return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/success')
         else:
-            return HttpResponseRedirect('/hostel/')
+            return HttpResponseRedirect('/')
     else:
         return render(request, 'hostel/swap_request.html', {})
 
@@ -250,7 +250,7 @@ def swap(request):
             return HttpResponse(html)
         
         else:
-            return HttpResponseRedirect('/hostel/')
+            return HttpResponseRedirect('/')
     
     else:
         return render(request, 'hostel/staff_swap_room.html', {})
@@ -270,7 +270,7 @@ def swap_ack(request):
             req.save()
         if '_decline' in request.POST:
             req.delete()
-        return HttpResponseRedirect('/hostel/success')
+        return HttpResponseRedirect('/success')
     else:
         return render(request, 'hostel/swap_ack.html', {'request': req, 'user': user})
 
@@ -298,7 +298,7 @@ def deallocate(request):
                     print students[i],old_room
                 else:
                     students[i].save()
-            return HttpResponseRedirect('/hostel/')
+            return HttpResponseRedirect('/')
     else:
         return render(request, 'hostel/deallocate.html', {})
 

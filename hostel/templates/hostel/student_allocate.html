@@ -23,12 +23,12 @@
         
         <ul class="nav navbar-nav navbar-left">
                 <li class="breadcrumb-icon" style="background-color:rgb(255,0,0)">
-                        <a href="/hostel">
+                        <a href="/">
                             <span class="fa fa-home"></span>
                         </a>
                     </li>
                     <li class="breadcrumb-active">
-                        <a href="/hostel" style="font-size: 20px">Hostel Management</a>
+                        <a href="/" style="font-size: 20px">Hostel Management</a>
                     </li>
                 </ul>
         
@@ -44,7 +44,7 @@
                 <ul class="dropdown-menu list-group keep-dropdown w250" role="menu">
    
                             <li class="dropdown-header clearfix">
-                                <a href="/hostel/logout/" class="btn btn-primary btn-sm btn-bordered">
+                                <a href="/logout/" class="btn btn-primary btn-sm btn-bordered">
                                     <span class="fa fa-power-off pr5"></span> Logout
                                 </a>
                             </li> 
@@ -56,7 +56,7 @@
             <div class="topbar-left">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-link">
-                        <a href="/hostel">Home</a>
+                        <a href="/">Home</a>
                     </li>
                     <li class="breadcrumb-current-item">/ Allocate Room</li>
                 </ol>
@@ -79,7 +79,7 @@
                                         </ul>
                                     {% endif %}
                                 </div>
-                                <form id="allocate_form" method="post" action="/hostel/allocate/">
+                                <form id="allocate_form" method="post" action="/allocate/">
                                     {% csrf_token %}
                                     <div class="panel-body pn">
                                         <div class="section">
@@ -103,7 +103,7 @@
                                        
                                     </div>
                                     <div class="section text-right">
-                                          <button class="btn btn-primary btn-bordered ph40"><a href ="/hostel/show_vacancy" target="_blank" style="color:white" >Check Vacancies</a></button>
+                                          <button class="btn btn-primary btn-bordered ph40"><a href ="/show_vacancy" target="_blank" style="color:white" >Check Vacancies</a></button>
 
                                         <button type="submit" class="btn btn-primary btn-bordered ph40">Allocate</button>
                                     </div>

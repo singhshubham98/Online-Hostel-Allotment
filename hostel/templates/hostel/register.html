@@ -23,12 +23,12 @@
         
         <ul class="nav navbar-nav navbar-left">
             <li class="breadcrumb-icon" style="background-color:rgb(255,0,0)">
-                <a href="/hostel">
+                <a href="/">
                     <span class="fa fa-home"></span>
                 </a>
             </li>
             <li class="breadcrumb-active">
-                <a href="/hostel" style="font-size: 20px">Hostel Management</a>
+                <a href="/" style="font-size: 20px">Hostel Management</a>
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
@@ -39,11 +39,11 @@
                 </a>
                 <ul class="dropdown-menu list-group keep-dropdown w250" role="menu">
    
-                            <li class="dropdown-header clearfix">
-                                <a href="/hostel/logout/" class="btn btn-primary btn-sm btn-bordered">
-                                    <span class="fa fa-power-off pr5"></span> Logout
-                                </a>
-                            </li> 
+                    <li class="dropdown-header clearfix">
+                        <a href="/logout/" class="btn btn-primary btn-sm btn-bordered">
+                            <span class="fa fa-power-off pr5"></span> Logout
+                        </a>
+                    </li> 
                 </ul>
             </li>
         </ul>
@@ -52,7 +52,7 @@
             <div class="topbar-left">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-link">
-                        <a href="/hostel">Home</a>
+                        <a href="/">Home</a>
                     </li>
                     <li class="breadcrumb-current-item">/ Registration</li>
                 </ol>
@@ -60,7 +60,7 @@
             
         </header>
         {% if registered %}
-        <a href="/hostel/">Return to the homepage.</a><br />
+        <a href="/">Return to the homepage.</a><br />
          {% else %}
         <section id="content" class="table-layout animated fadeIn">
             <div class="chute chute-center">
@@ -74,7 +74,7 @@
 
                                  <!-- Form  -->
 
-                                 <form action='/hostel/register/' method="POST" enctype="multipart/form-data">
+                                 <form action='/register/' method="POST" enctype="multipart/form-data">
                                     {% csrf_token %}
                                     {% if user_form.errors or student_form.errors %}
                                             {% for field in user_form %}
