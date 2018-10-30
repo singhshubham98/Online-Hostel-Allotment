@@ -21,7 +21,7 @@ def index(request):
     return render(request, 'hostel/index.html', {'diff' : diff, })
 
 # --------- RegisterPage view --------
-@login_required
+
 def register(request):
     # Set to False initially. Code changes value to True when registration succeeds.
     registered = False
