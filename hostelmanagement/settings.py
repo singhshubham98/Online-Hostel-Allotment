@@ -25,7 +25,7 @@ SECRET_KEY = 'r+sj6@^=x_-eb#j_=#mqc3sgdy8*_g#bzl%)=idie68agl)y8$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -116,7 +116,7 @@ USE_TZ = True
 
 AUTH_PROFILE_MODULE = "hostel.diff"
 
-LOGIN_URL = '/hostel/login/'
+LOGIN_URL = '/login/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/

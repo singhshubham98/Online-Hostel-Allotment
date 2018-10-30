@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^hostel/', include('hostel.urls')),
+    url(r'', include('hostel.urls')),
     url(r'^accounts/', include('django.contrib.auth.urls')),
 ]
 if settings.DEBUG:
