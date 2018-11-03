@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Hostel Management - Change Room</title>
+    <meta name="keywords" content=""/>
+    <meta name="description" content="">
+    <meta name="author" content="ThemeREX">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700'>
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,700,700italic' rel='stylesheet'
+          type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="http://alliance-html.themerex.net/assets/skin/default_skin/css/theme.css">
+    <link rel="stylesheet" type="text/css" href="http://alliance-html.themerex.net/assets/allcp/forms/css/forms.css">
+    <link rel="shortcut icon" href="http://alliance-html.themerex.net/assets/img/favicon.ico">
+
+</head>
+
+<body class="forms-layouts">
+<div id="main">
+    <header class="navbar navbar-fixed-top bg-dark">
+        <ul class="nav navbar-nav navbar-left">
+            <li class="breadcrumb-icon" style="background-color:rgb(255,0,0)">
+                <a href="/">
+                    <span class="fa fa-home"></span>
+                </a>
+            </li>
+            <li class="breadcrumb-active">
+                <a href="/" style="font-size: 20px">Hostel Management</a>
+            </li>         
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown dropdown-fuse">
+                <a href="#" class="dropdown-toggle fw600" data-toggle="dropdown">
+                    <span class="hidden-xs"><name>{{ user.username }}</name> </span>   
+                </a>
+                <ul class="dropdown-menu list-group keep-dropdown w250" role="menu">
+                    <li class="dropdown-header clearfix">
+                        <a href="/logout/" class="btn btn-primary btn-sm btn-bordered">
+                            <span class="fa fa-power-off pr5"></span> Logout </a>
+                    </li> 
+                </ul>
+            </li>
+        </ul>
+    </header>
+    
+        <header id="topbar" class="alt" style="margin-top: 75px;">
+            <div class="topbar-left">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-link">
+                        <a href="/">Home</a>
+                    </li>
+                    <li class="breadcrumb-current-item">/ All Students</li>
+                </ol>
+            </div>
+        </header>
+        <div class="panel" id="spy2" style="padding:25px">
+            <div class="panel-heading">
+                <span class="panel-title">All Student Details</span>   
+            </div>
+            <div class="panel-menu">
+                <input id="fooFilter" type="text" class="form-control"
+                        placeholder="Enter Table Filter Criteria Here...">
+            </div>
+            <div class="panel-body pn">
+                <div class="table-responsive">
+                    <table class="table footable" data-filter="#fooFilter">
+                        <thead>
+                            <tr>
+                                
+                                <th>Name</th>
+                                <th>Roll No.</th>
+                                <th>Email id</th>
+                                    <th>Room No.</th>
+                                <th>Batch.</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                    {% for student in students %}
+                                
+                            <tr>
+                                <td>{{ student.0.first_name }}  {{ student.0.last_name }}</td>
+                                <td>{{ student.1.roll_no }}</td>
+                                <td>{{ student.0.email }}</td>
+                                <td>{% if not student.1.room == None %}
+                                        {{ student.1.room.room_no }}
+                                        {% endif %}
+                                </td>
+                                <td>{{ student.1.join_year }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+</div>
+<!-- -------------- /Body Wrap  -------------- -->
+
+<style>
+    /* demo page styles */
+    .allcp-form .panel.heading-border:before,
+    .allcp-form .panel .heading-border:before {
+        transition: all 0.7s ease;
+    }
+</style>
+
+<!-- -------------- Scripts -------------- -->
+
+<!-- -------------- jQuery -------------- -->
+<script src="http://alliance-html.themerex.net/assets/js/jquery/jquery-1.11.3.min.js"></script>
+<script src="http://alliance-html.themerex.net/assets/js/jquery/jquery_ui/jquery-ui.min.js"></script>
+
+<!-- -------------- HighCharts Plugin -------------- -->
+<script src="http://alliance-html.themerex.net/assets/js/plugins/highcharts/highcharts.js"></script>
+
+<!-- -------------- MonthPicker JS -------------- -->
+<script src="http://alliance-html.themerex.net/assets/allcp/forms/js/jquery-ui-monthpicker.min.js"></script>
+
+{#<script src="home.iitj.ac.in/~ug201311007/footable.all.min.js"></script>#}
+<script src="http://alliance-html.themerex.net/assets/js/plugins/footable/js/footable.filter.min.js"></script>
+<script src="http://alliance-html.themerex.net/assets/js/plugins/footable/js/footable.all.min.js"></script>
+
+
+<!-- -------------- Theme Scripts ---------------->
+<script src="http://alliance-html.themerex.net/assets/js/utility/utility.js"></script>
+<script src="http://alliance-html.themerex.net/assets/js/demo/demo.js"></script>
+<script src="http://alliance-html.themerex.net/assets/js/main.js"></script>
+<script src="http://alliance-html.themerex.net/assets/js/demo/widgets_sidebar.js"></script>
+<!-- <script src="http://alliance-html.themerex.net/assets/js/pages/forms-layouts.js"></script> -->
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+
+        "use strict";
+
+        // Init Theme Core
+        Core.init();
+
+        // Init Demo JS
+        Demo.init();
+
+
+        // Init FooTable
+        $('.footable').footable();
+
+
+    });
+</script>
+<!-- -------------- /Scripts -------------- -->
+
+</body>
+
+</html>
