@@ -24,9 +24,14 @@ $ git clone https://github.com/singhshubham98/Online-Hostel-Allotment.git
 $ cd Online-Hostel-Allotment          
 $ sudo -H pip install -r requirements.txt
 
-## Migrate Database and run
+## Migrate Database
 $ python manage.py makemigrations   
-$ python manage.py migrate    
+$ python manage.py migrate
+
+## Create Super User
+$ python manage.py createsuperuser
+
+## Run CLI
 $ python manage.py runserver
 
 ## License
