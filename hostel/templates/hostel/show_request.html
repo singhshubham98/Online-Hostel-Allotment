@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Hostel Management - All Requests</title>
+    <meta name="keywords" content=""/>
+    <meta name="description" content="">
+    <meta name="author" content="ThemeREX">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700'>
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,700,700italic' rel='stylesheet'
+          type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="http://alliance-html.themerex.net/assets/js/plugins/footable/css/footable.core.min.css">
+    <link rel="stylesheet" type="text/css" href="http://alliance-html.themerex.net/assets/skin/default_skin/css/theme.css">
+    <link rel="stylesheet" type="text/css" href="http://alliance-html.themerex.net/assets/allcp/forms/css/forms.css">
+    <link rel="shortcut icon" href="http://alliance-html.themerex.net/assets/img/favicon.ico">
+</head>
+
+<body class="forms-layouts" >
+<div id="main">
+    <header class="navbar navbar-fixed-top bg-dark">
+        
+        <ul class="nav navbar-nav navbar-left">
+                <li class="breadcrumb-icon" style="background-color:rgb(255,0,0)">
+                        <a href="/">
+                            <span class="fa fa-home"></span>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-active">
+                        <a href="/" style="font-size: 20px">Hostel Management</a>
+                    </li>
+                </ul>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown dropdown-fuse">
+                <a href="#" class="dropdown-toggle fw600" data-toggle="dropdown">
+                    <span class="hidden-xs"><name>{{ user.username }}</name> </span>
+                   
+                </a>
+                <ul class="dropdown-menu list-group keep-dropdown w250" role="menu">
+                    
+                    <li class="dropdown-header clearfix">
+                        <a href="/logout/" class="btn btn-primary btn-sm btn-bordered">
+                            <span class="fa fa-power-off pr5"></span> Logout </a>
+                    </li>          
+                </ul>
+            </li>
+        </ul>
+    </header>
+        <header id="topbar" class="alt" style="margin-top: 75px;">
+            <div class="topbar-left">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-link">
+                        <a href="/">Home</a>
+                    </li>
+                    <li class="breadcrumb-current-item">/ All Requests</li>
+                </ol>
+            </div>
+            
+        </header>
+               
+            {% if not change_req == None %}
+                <div class="panel" style="padding: 25px">
+                    <div class="panel-heading">
+                        <span class="panel-title">Room Change Requests</span>   
+                    </div>
+                    <div class="panel-body pn">
+                        <div class="table-responsive">
+                            <table class="table footable">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Roll No.</th>
+                                    <th>Current Room</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    {% for change in change_req %}
+                                <tr>
+                                    
+                                    <td>{{ change.0.first_name}}</td>
+                                    <td>{{ change.1.student.roll_no }}</td>
+                                    <td>{{ change.1.student.room.room_no}}</td>
+                                    </a>
+                                </tr>
+                                 {% endfor %}
+                            {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                {% if not swap_req == None %}
+                <div class="panel" id="spy1" style="padding: 25px">
+                    <div class="panel-heading">
+                        <span class="panel-title">Swap Room Requests</span>
+                        
+                    </div>
+                    <div class="panel-body pn">
+                        <div class="table-responsive">
+                            <table class="table footable">
+                                <thead>
+                                
+                                <tr>
+                                    <th>Roll No. 1</th>
+                                    <th>Current Room </th>
+                                    <th>Roll No. 2</th>
+                                    <th>Current Room</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    {% for swap in swap_req %}
+                                        {% if swap.accept %}
+                                <tr>
+                                    <td>{{ swap.student1.roll_no }}</a></td>
+                                    <td>{{ swap.student1.room.room_no }}</td>
+                                    <td>{{ swap.student2.roll_no}}</td>
+                                    <td>{{ swap.student2.room.room_no}} </td>
+                                </tr>
+                                        {% endif %}
+                                 {% endfor %}
+                            {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+</div>
+<style>
+    .allcp-form .panel.heading-border:before,
+    .allcp-form .panel .heading-border:before {
+        transition: all 0.7s ease;
+    }
+</style>
+<script src="http://alliance-html.themerex.net/assets/js/jquery/jquery-1.11.3.min.js"></script>
+<script src="http://alliance-html.themerex.net/assets/js/jquery/jquery_ui/jquery-ui.min.js"></script>
+<script src="http://alliance-html.themerex.net/assets/js/plugins/highcharts/highcharts.js"></script>
+<script src="http://alliance-html.themerex.net/assets/allcp/forms/js/jquery-ui-monthpicker.min.js"></script>
+<script src="http://alliance-html.themerex.net/assets/js/plugins/footable/js/footable.all.min.js"></script>
+<script src="http://alliance-html.themerex.net/assets/js/plugins/footable/js/footable.filter.min.js"></script>
+<script src="http://alliance-html.themerex.net/assets/js/utility/utility.js"></script>
+<script src="http://alliance-html.themerex.net/assets/js/demo/demo.js"></script>
+<script src="http://alliance-html.themerex.net/assets/js/main.js"></script>
+<script src="http://alliance-html.themerex.net/assets/js/demo/widgets_sidebar.js"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+
+        "use strict";
+
+        // Init Theme Core
+        Core.init();
+
+        // Init Demo JS
+        Demo.init();
+
+
+        // Init FooTable
+        $('.footable').footable();
+
+
+    });
+    $('button[name="button"]').click(function(e){
+   $(this).closest('tr').remove()
+})
+
+</script>
+
+</body>
+
+</html>
