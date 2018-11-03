@@ -1,4 +1,4 @@
-# Hostel-Management-System
+# Online-Hostel-Allotment
 Hostel Management System made for our IIITV hostel. Specific to requirements.
 A desktop application aimed to manage hostel. The application was made using Bootstrap, Django and sqllite for Database.
 This was a personal project made during summer.
@@ -18,12 +18,16 @@ The privileges allowed to the head clerk/hostel accountant are:
 7. Search through complete database
 
 ## Clone project
-$ git clone @github.com/singhshubham98/Online-Hostel-Allotment.git
+$ git clone https://github.com/singhshubham98/Online-Hostel-Allotment.git
 
 ## Install requirements
 $ cd Online-Hostel-Allotment          
 $ sudo -H pip install -r requirements.txt
 
+## Migrate Database and run
+$ python manage.py makemigrations   
+$ python manage.py migrate    
+$ python manage.py runserver
 
 ## License
 This project is licensed under the MIT license. See LICENSE file for more details.
