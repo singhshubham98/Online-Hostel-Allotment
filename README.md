@@ -21,7 +21,8 @@ The privileges allowed to the head clerk/hostel accountant are:
 $ git clone https://github.com/singhshubham98/Online-Hostel-Allotment.git
 
 ## Install requirements
-cd Online-Hostel-Allotment
+$ cd Online-Hostel-Allotment
+$ sudo -H pip install -r requirements.txt
 
 
 ## License
