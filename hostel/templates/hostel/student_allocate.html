@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Hostel Management - Allocate Room</title>
+    <meta name="keywords" content=""/>
+    <meta name="description" content="">
+    <meta name="author" content="ThemeREX">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700'>
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,700,700italic' rel='stylesheet'
+          type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="http://alliance-html.themerex.net/assets/skin/default_skin/css/theme.css">
+    <link rel="stylesheet" type="text/css" href="http://alliance-html.themerex.net/assets/allcp/forms/css/forms.css">
+    <link rel="shortcut icon" href="http://alliance-html.themerex.net/assets/img/favicon.ico">
+
+</head>
+
+<body class="forms-layouts" style="overflow-y: hidden;">
+<div id="main">
+    <header class="navbar navbar-fixed-top bg-dark">
+        
+        <ul class="nav navbar-nav navbar-left">
+                <li class="breadcrumb-icon" style="background-color:rgb(255,0,0)">
+                        <a href="/">
+                            <span class="fa fa-home"></span>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-active">
+                        <a href="/" style="font-size: 20px">Hostel Management</a>
+                    </li>
+                </ul>
+        
+            
+            
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+             <li class="dropdown dropdown-fuse">
+                <a href="#" class="dropdown-toggle fw600" data-toggle="dropdown">
+                    <span class="hidden-xs"><name>{{ request.user.first_name }}</name> </span>
+                   
+                </a>
+                <ul class="dropdown-menu list-group keep-dropdown w250" role="menu">
+   
+                            <li class="dropdown-header clearfix">
+                                <a href="/logout/" class="btn btn-primary btn-sm btn-bordered">
+                                    <span class="fa fa-power-off pr5"></span> Logout
+                                </a>
+                            </li> 
+                </ul>
+            </li>
+        </ul>
+    </header>
+        <header id="topbar" class="alt" style="margin-top: 75px;">
+            <div class="topbar-left">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-link">
+                        <a href="/">Home</a>
+                    </li>
+                    <li class="breadcrumb-current-item">/ Allocate Room</li>
+                </ol>
+            </div>
+            
+        </header>
+        <section id="content" class="table-layout animated fadeIn">
+            <div class="chute chute-center">
+                    <div class="tab-content mw900 center-block center-children">
+                        <div class="allcp-form theme-primary tab-pane active mw600"  id="contact" role="tabpanel">
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <span class="panel-title">Allocate Room</span>
+                                    <span></br></br>Note: You can allocate a room to a perticular student by entering his/her roll no. and a valid room no.</span>
+                                {% if messages %}
+                                        <ul class="messages">
+                                        {% for message in messages %}
+                                            <font color="red"><li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li></font>
+                                        {% endfor %}
+                                        </ul>
+                                    {% endif %}
+                                </div>
+                                <form id="allocate_form" method="post" action="/allocate/">
+                                    {% csrf_token %}
+                                    <div class="panel-body pn">
+                                        <div class="section">
+                                            <label for="names" class="field prepend-icon">
+                                                <input type="text" name="roll_no" class="gui-input"
+                                                       placeholder="Roll no.">
+                                                <label for="names" class="field-icon">
+                                                    <i class="fa fa-user"></i>
+                                                </label>
+                                            </label>
+                                        </div>
+                                        <div class="section">
+                                            <label for="names" class="field prepend-icon">
+                                                <input type="number" name="room_no" class="gui-input"
+                                                       placeholder="New Room no.">
+                                                <label for="names" class="field-icon">
+                                                    <i class="fa fa-hotel"></i>
+                                                </label>
+                                            </label>
+                                        </div>
+                                       
+                                    </div>
+                                    <div class="section text-right">
+                                          <button class="btn btn-primary btn-bordered ph40"><a href ="/show_vacancy" target="_blank" style="color:white" >Check Vacancies</a></button>
+
+                                        <button type="submit" class="btn btn-primary btn-bordered ph40">Allocate</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </section>
+    </section>
+</div>
+<style>
+    .allcp-form .panel.heading-border:before,
+    .allcp-form .panel .heading-border:before {
+        transition: all 0.7s ease;
+    }
+</style>
+
+<script src="http://alliance-html.themerex.net/assets/js/jquery/jquery-1.11.3.min.js"></script>
+<script src="http://alliance-html.themerex.net/assets/js/jquery/jquery_ui/jquery-ui.min.js"></script>
+
+<!-- -------------- HighCharts Plugin -------------- -->
+<script src="http://alliance-html.themerex.net/assets/js/plugins/highcharts/highcharts.js"></script>
+
+<!-- -------------- MonthPicker JS -------------- -->
+<script src="http://alliance-html.themerex.net/assets/allcp/forms/js/jquery-ui-monthpicker.min.js"></script>
+
+<!-- -------------- Theme Scripts ---------------->
+<script src="http://alliance-html.themerex.net/assets/js/utility/utility.js"></script>
+<script src="http://alliance-html.themerex.net/assets/js/demo/demo.js"></script>
+<script src="http://alliance-html.themerex.net/assets/js/main.js"></script>
+<script src="http://alliance-html.themerex.net/assets/js/demo/widgets_sidebar.js"></script>
+{#<script src="http://alliance-html.themerex.net/assets/js/pages/forms-layouts.js"></script>#}
+
+<!-- -------------- /Scripts -------------- -->
+
+</body>
+
+</html>
