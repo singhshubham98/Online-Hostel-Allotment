@@ -18,6 +18,7 @@ The privileges allowed to the head clerk/hostel accountant are:
 7. Search through complete database
 
 ## Clone project
+ first fork the repository
 $ git clone https://github.com/singhshubham98/Online-Hostel-Allotment.git
 
 ## Install requirements
