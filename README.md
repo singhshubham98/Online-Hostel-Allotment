@@ -28,6 +28,7 @@ The privileges allowed to the head clerk/hostel accountant are:
 ![screenshot 2018-10-26 at 8 54 51 pm](https://user-images.githubusercontent.com/25260334/47576544-5f147a00-d962-11e8-80fa-a1b34b05ca86.png)
 
 ## Student homepage
-![screenshot 2018-10-26 at 8 56 33 pm](https://user-images.githubusercontent.com/25260334/47576542-5f147a00-d962-11e8-9248-926a5a955a23.png)
+![screenshot 2018-11-02 at 10 15 47 pm](https://user-images.githubusercontent.com/25260334/47928701-eb87e500-deec-11e8-8f9a-decec21e8d4b.png)
+
 
 
