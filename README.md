@@ -22,7 +22,6 @@ $ git clone @github.com/singhshubham98/Online-Hostel-Allotment.git
 
 ## Install requirements
 $ cd Online-Hostel-Allotment
-
 $ sudo -H pip install -r requirements.txt
 
 
