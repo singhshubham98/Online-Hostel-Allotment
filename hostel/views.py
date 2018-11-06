@@ -31,7 +31,7 @@ def register(request):
         diff_form    = DiffForm(request.POST)
         student_form = StudentForm(request.POST, request.FILES)
         
-        
+            
         if user_form.is_valid() and diff_form.is_valid() and student_form.is_valid():
             try:
                 user = user_form.save()

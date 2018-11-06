@@ -1,4 +1,4 @@
-
+import re
 from django import forms
 from django.contrib.auth.models import User
 from .models import Student, Diff, Room
@@ -26,6 +26,18 @@ class UserForm(forms.ModelForm):
             raise forms.ValidationError('Password length at least 8 characters')
         return password
     
+    def clean_first_name(self):
+        first_name = self.cleaned_data.get('first_name')
+        if not re.match(r'[A-Za-z]{25,}', first_name):
+            raise forms.ValidationError('Name is not valid!')
+        return first_name
+
+    def clean_last_name(self):
+        last_name = self.cleaned_data.get('last_name')
+        if not re.match(r'[A-Za-z]{25,}', last_name):
+            raise forms.ValidationError('Name is not valid!')
+        return last_name
+    
 
 class DiffForm(forms.ModelForm):
     class Meta:
@@ -49,6 +61,13 @@ class StudentForm(forms.ModelForm):
         if not len(str(pincode)) == 6:
             raise forms.ValidationError('Please enter valid Pincode')
         return pincode
+    
+    def clean_father_name(self):
+        father_name = self.cleaned_data.get('father_name')
+        if not re.match(r'[A-Za-z]{25,}', father_name):
+            raise forms.ValidationError('Name is not valid!')
+        return father_name
+
 
 class RoomForm(forms.ModelForm):
     class Meta:
