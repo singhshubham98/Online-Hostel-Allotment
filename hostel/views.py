@@ -13,7 +13,6 @@ import csv, os
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import FileSystemStorage
-
 # Diff class for authentication if login user is not hostel admin or Student then
 # login page will display error 
 @login_required
@@ -38,9 +37,10 @@ def register(request):
                 user = user_form.save()
                 # user.username(label_tag='roll_no')
                 # using set_password method, hash the password
+                user.is_active = False
                 user.set_password(user.password)
                 user.save()
-
+                
                 # Since we need to set the user attribute ourselves, we set commit=False.
                 # This delays saving the model until we're ready to avoid integrity problems.
                 diff = diff_form.save(commit = False)
@@ -50,6 +50,7 @@ def register(request):
                 student.roll_no = user
                 student.save()
                 registered = True
+                
                 return HttpResponseRedirect('/')
             except:
                 pass
@@ -68,8 +69,8 @@ def register(request):
         'registered': registered,
     })
 
-# --------- Loginpage view --------
-
+# --------- Login --------
+@lo
 def user_login(request):
 
     if request.method == 'POST':
