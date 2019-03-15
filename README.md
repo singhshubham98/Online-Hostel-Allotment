@@ -34,5 +34,9 @@ $ python manage.py createsuperuser
 ## Run CLI
 $ python manage.py runserver
 
+## Username and Password
+  Username - admin
+  Password - admin123
+
 ## License
 This project is licensed under the MIT license. See LICENSE file for more details.
