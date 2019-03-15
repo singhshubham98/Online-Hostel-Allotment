@@ -35,7 +35,7 @@ $ python manage.py createsuperuser
 $ python manage.py runserver
 
 ## Username and Password
-  Username - admin 
+  Username - admin
   Password - admin123
 
 ## License
