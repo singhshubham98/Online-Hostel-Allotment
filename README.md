@@ -14,7 +14,6 @@ The privileges allowed to the head clerk/hostel accountant are:
 3. Swap rooms between students
 4. Shift student to empty room
 5. View or Update Details of student
-6. Change Password
 7. Search through complete database
 
 ## Clone project
