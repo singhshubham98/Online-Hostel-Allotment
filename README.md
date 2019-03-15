@@ -1,4 +1,5 @@
-# Online-Hostel-Allotment
+
+# Online-Hostel-Allotment 
 Hostel Management System made for our IIITV hostel. Specific to requirements.
 A desktop application aimed to manage hostel. The application was made using Bootstrap, Django and sqllite for Database.
 
@@ -40,3 +41,8 @@ $ python manage.py runserver
 
 ## License
 This project is licensed under the MIT license. See LICENSE file for more details.
+<p align="center">
+ <a href="/LICENSE">
+    <img src="https://img.shields.io/github/license/singhshubham98/Online-Hostel-Allotment.svg?style=for-the-badge" align="center">
+</a>
+</p>
