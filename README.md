@@ -1,12 +1,5 @@
 
 # Online-Hostel-Allotment 
-
-<p align="center">
-<a href="https://github.com/singhshubham98/Online-Hostel-Allotment/issues">
-    <img src="https://img.shields.io/github/issues/singhshubham98/Online-Hostel-Allotment.svg?style=for-the-badge" align="center">
-</a>
-</p>
-<hr>
 Hostel Management System made for our IIITV hostel. Specific to requirements.
 A desktop application aimed to manage hostel. The application was made using Bootstrap, Django and sqllite for Database.
 
@@ -45,6 +38,13 @@ $ python manage.py runserver
 ## Username and Password
   Username - admin.   
   Password - admin123
+  
+## Issues
+<p align="center">
+<a href="https://github.com/singhshubham98/Online-Hostel-Allotment/issues">
+    <img src="https://img.shields.io/github/issues/singhshubham98/Online-Hostel-Allotment.svg?style=for-the-badge" align="center">
+</a>
+</p>
 
 ## License
 This project is licensed under the MIT license. See LICENSE file for more details.
