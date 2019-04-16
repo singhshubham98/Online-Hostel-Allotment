@@ -1,5 +1,12 @@
 
 # Online-Hostel-Allotment 
+
+<p align="center">
+<a href="https://github.com/Online-Hostel-Allotment/issues">
+    <img src="https://img.shields.io/github/issues/Online-Hostel-Allotment.svg?style=for-the-badge" align="center">
+</a>
+</p>
+<hr>
 Hostel Management System made for our IIITV hostel. Specific to requirements.
 A desktop application aimed to manage hostel. The application was made using Bootstrap, Django and sqllite for Database.
 
