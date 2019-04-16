@@ -2,8 +2,8 @@
 # Online-Hostel-Allotment 
 
 <p align="center">
-<a href="https://github.com/Online-Hostel-Allotment/issues">
-    <img src="https://img.shields.io/github/issues/Online-Hostel-Allotment.svg?style=for-the-badge" align="center">
+<a href="https://github.com/singhshubham98/Online-Hostel-Allotment/issues">
+    <img src="https://img.shields.io/github/issues/singhshubham98/Online-Hostel-Allotment.svg?style=for-the-badge" align="center">
 </a>
 </p>
 <hr>
