@@ -1,5 +1,5 @@
 
-# Online-Hostel-Allotment 
+# Online-Hostel-Allotment :hotel:
 Hostel Management System made for our IIITV hostel. Specific to requirements.
 A desktop application aimed to manage hostel. The application was made using Bootstrap, Django and sqllite for Database.
 
